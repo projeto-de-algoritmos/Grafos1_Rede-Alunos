@@ -58,7 +58,8 @@ void InterfacePrincipal::menuPrincipal() {
     int opcao; 
     cout << "(1) Amigos" << endl;
     cout << "(2) Grupos de estudo" << endl; 
-    cout << "(3) Gerenciar perfil" << endl; 
+    cout << "(3) Gerenciar perfil" << endl;
+    cout << "(4) Sair da conta" << endl; 
     opcao = getInt(); 
     system("clear"); 
 
@@ -81,10 +82,14 @@ void InterfacePrincipal::menuPrincipal() {
 }
 
     void InterfacePrincipal::menuAmigos(){
-
+        int opcao; 
+        cout << "(1) Meus amigos" << endl;
+        cout << "(2) Adicionar amigo" << endl; 
+        cout << "(3) Voltar" << endl; 
+        opcao = getInt(); 
     }
     void InterfacePrincipal::menuGrupos(){
-
+       
     }  
     void InterfacePrincipal::menuConfiguracao(){
         
