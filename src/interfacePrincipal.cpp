@@ -93,15 +93,7 @@ void InterfacePrincipal::menuAmigos(){
     cout << "(3) Voltar" << endl; 
     opcao = getInt(); 
 
-    if(opcao == 1){
-
-    }
-    else if(opcao == 3){
-
-    }
-    else{
-
-    }
+    
 }
 
 void InterfacePrincipal::menuGrupos(){
@@ -118,4 +110,24 @@ void InterfacePrincipal::menuConfiguracao(){
     cout << "(2) Excluir conta" << endl; 
     cout << "(3) Voltar" << endl; 
     opcao = getInt(); 
+
+    if(opcao == 1){
+        menuAtualizacao(); 
+    }
+    else if(opcao == 2){
+
+    }
+    else{
+
+    }
+}
+
+void InterfacePrincipal::menuAtualizacao(){ 
+    int opcao; 
+    cout << "Escolha o dado que deseja atualizar:" << endl << endl;
+    cout << "(1) Nome" << endl;
+    cout << "(2) Senha" << endl; 
+    cout << "(3) Voltar" << endl; 
+    opcao = getInt(); 
+
 }

@@ -15,6 +15,7 @@ public:
     void menuAmigos();
     void menuGrupos();  
     void menuConfiguracao();  
+    void menuAtualizacao();  
     string getString();
     int getInt();
 };
