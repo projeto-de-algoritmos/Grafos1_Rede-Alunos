@@ -35,7 +35,7 @@ void InterfacePrincipal::menuLogin() {
 
 void InterfacePrincipal::menuCriarConta() {
     string nome, usuario, senha;
-    cout << "Nome: ";
+    cout << "Nome completo: ";
     nome = getString();
     cout << "Nome de usuário: ";
     usuario = getString();
@@ -54,5 +54,38 @@ void InterfacePrincipal::menuFazerLogin() {
 }
 
 void InterfacePrincipal::menuPrincipal() {
+    system("clear"); 
+    int opcao; 
+    cout << "(1) Amigos" << endl;
+    cout << "(2) Grupos de estudo" << endl; 
+    cout << "(3) Gerenciar perfil" << endl; 
+    opcao = getInt(); 
+    system("clear"); 
 
+    switch (opcao){
+        case 1:{
+            menuAmigos();     
+            break;
+        }
+        case 2: {
+            menuGrupos();  
+            break;
+        }
+        case 3: {
+            menuConfiguracao();  
+            break;
+        }
+        default:
+            break; 
+    }
 }
+
+    void InterfacePrincipal::menuAmigos(){
+
+    }
+    void InterfacePrincipal::menuGrupos(){
+
+    }  
+    void InterfacePrincipal::menuConfiguracao(){
+        
+    }

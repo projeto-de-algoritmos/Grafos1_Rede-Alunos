@@ -12,6 +12,9 @@ public:
     void menuCriarConta();
     void menuFazerLogin();
     void menuPrincipal();
+    void menuAmigos();
+    void menuGrupos();  
+    void menuConfiguracao();  
     string getString();
     int getInt();
 };
