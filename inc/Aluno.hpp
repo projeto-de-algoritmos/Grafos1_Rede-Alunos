@@ -3,19 +3,19 @@
 
 #include <iostream>
 #include <vector> 
+
 using namespace std;
 
 class Aluno {
-    protected: 
+protected:
     int matricula;
     string nome;
-    string usuario; 
+    string usuario;
     string senha;
-    vector <int> amigos; 
+    vector <int> conexoes;
 
-    public: 
+public:
     Aluno(int matricula, string nome, string usuario,string senha); 
-
     int getMatricula();
     void setMatricula(int matricula); 
     string getNome();
