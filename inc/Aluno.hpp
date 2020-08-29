@@ -3,19 +3,21 @@
 
 #include <iostream>
 #include <vector> 
+
 using namespace std;
 
 class Aluno {
-    protected: 
-        int matricula;
-        string nome;
-        string usuario; 
-        string senha;
-        vector <int> amigos; 
+private:
+    int id;
+    int matricula;
+    string nome;
+    string usuario;
+    string senha;
+    vector <int> conexoes;
 
-    public: 
-    Aluno(int matricula, string nome, string usuario,string senha); 
 
+public:
+    Aluno(int id, int matricula, string nome, string usuario,string senha); 
     int getMatricula();
     void setMatricula(int matricula); 
     string getNome();
@@ -24,6 +26,8 @@ class Aluno {
     void setUsuario(string usuario);  
     string getSenha();
     void setSenha(string senha); 
+    int getId();
+    vector <int> getConexoes();
 };
 
 #endif 
