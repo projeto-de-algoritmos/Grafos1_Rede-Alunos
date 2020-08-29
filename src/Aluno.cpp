@@ -2,12 +2,12 @@
 
 #include <iostream>
 
-Aluno::Aluno(int matricula, string nome, string senha, string email){
+Aluno::Aluno(int matricula, string nome, string usuario, string senha){
     
     this->matricula = matricula; 
     this->nome = nome;
+    this->usuario = usuario; 
     this->senha = senha;
-    this->email = email;
 } 
 
 int Aluno::getMatricula(){
@@ -33,10 +33,4 @@ string Aluno::getSenha(){
 }
 void Aluno::setSenha(string senha){
     this->senha = senha;
-} 
-string Aluno::getEmail(){
-    return email; 
-}
-void Aluno::setEmail(string email){
-    this->email = email; 
 } 

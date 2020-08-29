@@ -2,7 +2,7 @@
 #define ALUNO_HPP
 
 #include <iostream>
-
+#include <vector> 
 using namespace std;
 
 class Aluno {
@@ -10,11 +10,11 @@ class Aluno {
     int matricula;
     string nome;
     string usuario; 
-    string senha; 
-    string email; 
+    string senha;
+    vector <int> amigos; 
 
     public: 
-    Aluno(int matricula, string nome, string senha, string email); 
+    Aluno(int matricula, string nome, string usuario,string senha); 
 
     int getMatricula();
     void setMatricula(int matricula); 
@@ -24,8 +24,6 @@ class Aluno {
     void setUsuario(string usuario);  
     string getSenha();
     void setSenha(string senha); 
-    string getEmail();
-    void setEmail(string email); 
 };
 
 #endif 

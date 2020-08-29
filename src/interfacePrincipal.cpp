@@ -1,4 +1,5 @@
 #include "interfacePrincipal.hpp"
+#include "Aluno.hpp"
 
 #include <iostream>
 
@@ -35,6 +36,9 @@ void InterfacePrincipal::menuLogin() {
 
 void InterfacePrincipal::menuCriarConta() {
     string nome, usuario, senha;
+    int matricula; 
+    cout << "Matricula: ";
+    matricula = getInt();
     cout << "Nome completo: ";
     nome = getString();
     cout << "Nome de usuário: ";
@@ -129,5 +133,4 @@ void InterfacePrincipal::menuAtualizacao(){
     cout << "(2) Senha" << endl; 
     cout << "(3) Voltar" << endl; 
     opcao = getInt(); 
-
 }
