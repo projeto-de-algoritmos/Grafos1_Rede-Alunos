@@ -17,16 +17,15 @@ class Aluno {
     Aluno(int matricula, string nome, string senha, string email); 
 
     int getMatricula();
-    void setMatricula(); 
+    void setMatricula(int matricula); 
     string getNome();
-    void setNome();
+    void setNome(string nome);
     string getUsuario();
-    void setUsuario();  
+    void setUsuario(string usuario);  
     string getSenha();
-    void setSenha(); 
+    void setSenha(string senha); 
     string getEmail();
-    void setEmail(); 
-
+    void setEmail(string email); 
 };
 
 #endif 
