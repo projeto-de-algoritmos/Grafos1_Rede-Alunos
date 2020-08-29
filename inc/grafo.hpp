@@ -11,7 +11,10 @@ private:
     vector <Aluno> alunos;
 
 public:
+    Grafo();
     void adicionaAluno(Aluno aluno);
+    void imprimeGrafo();
+    int getTamanho();
 };
 
 #endif

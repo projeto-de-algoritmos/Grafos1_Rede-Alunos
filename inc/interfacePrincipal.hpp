@@ -1,11 +1,15 @@
 #ifndef INTERFACEPRINCIPAL_HPP
 #define INTERFACEPRINCIPAL_HPP
 
+#include "grafo.hpp"
+
 #include <iostream>
 
 using namespace std;
 
 class InterfacePrincipal {
+private:
+    Grafo alunos;
 public:
     InterfacePrincipal();
     void menuLogin();

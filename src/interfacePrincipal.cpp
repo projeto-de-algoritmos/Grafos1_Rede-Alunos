@@ -36,7 +36,7 @@ void InterfacePrincipal::menuLogin() {
 
 void InterfacePrincipal::menuCriarConta() {
     string nome, usuario, senha;
-    int matricula; 
+    int matricula;
     cout << "Matricula: ";
     matricula = getInt();
     cout << "Nome completo: ";
@@ -45,6 +45,7 @@ void InterfacePrincipal::menuCriarConta() {
     usuario = getString();
     cout << "Senha: ";
     senha = getString();
+    alunos.adicionaAluno(Aluno(alunos.getTamanho(), matricula, nome, usuario, senha));
     menuPrincipal();
 }
 
@@ -58,49 +59,45 @@ void InterfacePrincipal::menuFazerLogin() {
 }
 
 void InterfacePrincipal::menuPrincipal() {
-    int paraLoop = 0; 
-    while (true){
-        system("clear"); 
-        int opcao; 
+    int paraLoop = 0;
+    while(true) {
+        int opcao;
         cout << "(1) Amigos" << endl;
-        cout << "(2) Grupos de estudo" << endl; 
+        cout << "(2) Grupos de estudo" << endl;
         cout << "(3) Gerenciar perfil" << endl;
-        cout << "(4) Sair da conta" << endl; 
-        opcao = getInt(); 
-
-        switch (opcao){
-            case 1:{
+        cout << "(4) Visualizar grafo" << endl;
+        cout << "(5) Sair da conta" << endl;
+        opcao = getInt();
+        switch(opcao) {
+            case 1:
                 menuAmigos();     
                 break;
-            }
-            case 2: {
+            case 2:
                 menuGrupos();  
                 break;
-            }
-            case 3: {
+            case 3:
                 menuConfiguracao();  
                 break;
-            }
+            case 4:
+                alunos.imprimeGrafo();
+                break;
             default:
                 paraLoop = 1;
-                break; 
         }
         if(paraLoop == 1)
-            break; 
+            break;
     }
 }
 
-void InterfacePrincipal::menuAmigos(){
-    int opcao; 
+void InterfacePrincipal::menuAmigos() {
+    int opcao;
     cout << "(1) Meus amigos" << endl;
-    cout << "(2) Adicionar amigo" << endl; 
-    cout << "(3) Voltar" << endl; 
-    opcao = getInt(); 
-
-    
+    cout << "(2) Adicionar amigo" << endl;
+    cout << "(3) Voltar" << endl;
+    opcao = getInt();
 }
 
-void InterfacePrincipal::menuGrupos(){
+void InterfacePrincipal::menuGrupos() {
     int opcao; 
     cout << "(1) Meus grupos" << endl;
     cout << "(2) Criar grupo" << endl; 
@@ -108,7 +105,7 @@ void InterfacePrincipal::menuGrupos(){
     opcao = getInt(); 
 }
 
-void InterfacePrincipal::menuConfiguracao(){
+void InterfacePrincipal::menuConfiguracao() {
     int opcao; 
     cout << "(1) Atualizar dados" << endl;
     cout << "(2) Excluir conta" << endl; 

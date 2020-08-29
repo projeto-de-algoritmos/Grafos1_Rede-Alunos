@@ -2,7 +2,8 @@
 
 #include <iostream>
 
-Aluno::Aluno(int matricula, string nome, string usuario, string senha) {
+Aluno::Aluno(int id, int matricula, string nome, string usuario, string senha) {
+    this->id = id;
     this->matricula = matricula;
     this->nome = nome;
     this->usuario = usuario;
@@ -39,4 +40,12 @@ string Aluno::getSenha() {
 
 void Aluno::setSenha(string senha) {
     this->senha = senha;
+}
+
+int Aluno::getId() {
+    return id;
+}
+
+vector <int> Aluno::getConexoes() {
+    return conexoes;
 }

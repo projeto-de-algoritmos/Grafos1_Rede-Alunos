@@ -7,7 +7,8 @@
 using namespace std;
 
 class Aluno {
-protected:
+private:
+    int id;
     int matricula;
     string nome;
     string usuario;
@@ -15,7 +16,7 @@ protected:
     vector <int> conexoes;
 
 public:
-    Aluno(int matricula, string nome, string usuario,string senha); 
+    Aluno(int id, int matricula, string nome, string usuario,string senha); 
     int getMatricula();
     void setMatricula(int matricula); 
     string getNome();
@@ -24,6 +25,8 @@ public:
     void setUsuario(string usuario);  
     string getSenha();
     void setSenha(string senha); 
+    int getId();
+    vector <int> getConexoes();
 };
 
 #endif 
