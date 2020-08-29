@@ -7,11 +7,11 @@ using namespace std;
 
 class Aluno {
     protected: 
-    int matricula;
-    string nome;
-    string usuario; 
-    string senha;
-    vector <int> amigos; 
+        int matricula;
+        string nome;
+        string usuario; 
+        string senha;
+        vector <int> amigos; 
 
     public: 
     Aluno(int matricula, string nome, string usuario,string senha); 
