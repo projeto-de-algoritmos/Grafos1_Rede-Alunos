@@ -53,7 +53,7 @@ void InterfacePrincipal::menuCriarConta() {
     senha = getString();
     Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
     alunos.push_back(aluno);
-    ids.adicionaAluno(aluno);
+    ids.novoVertice();
     menuPrincipal();
 }
 
@@ -87,6 +87,7 @@ void InterfacePrincipal::menuPrincipal() {
                 menuConfiguracao();  
                 break;
             case 4:
+                ids.imprimeGrafo();
                 break;
             default:
                 paraLoop = 1;

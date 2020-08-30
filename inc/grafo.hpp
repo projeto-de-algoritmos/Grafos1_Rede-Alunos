@@ -8,12 +8,14 @@
 class Grafo {
 private:
     int tamanho;
-    vector <int> ids; 
+    vector<vector<int>> ids;
 
 public:
     Grafo();
     void adicionaAluno(Aluno aluno);
     int getTamanho();
+    void imprimeGrafo();
+    void novoVertice();
 };
 
 #endif
