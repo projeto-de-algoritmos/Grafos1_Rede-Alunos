@@ -58,23 +58,38 @@ void InterfacePrincipal::menuCriarConta() {
 }
 
 void InterfacePrincipal::menuFazerLogin() {
-    string nome, senha;
-    cout << "Nome de usuário: ";
-    nome = getString();
-    cout << "Senha: ";
-    senha = getString();
+    string usuario, senha;
+    bool loop = true;
+    while(loop) {
+        cout << "Nome de usuário: ";
+        usuario = getString();
+        cout << "Senha: ";
+        senha = getString();
+        loop = verificaCredenciais(usuario, senha);
+        if(loop == true)
+            cout << "Credenciais incorretas." << endl;
+    }
     menuPrincipal();
 }
 
+bool InterfacePrincipal::verificaCredenciais(string usuario, string senha) {
+    for(Aluno a: alunos) {
+        if(a.verificaUsuario(usuario) && a.verificaSenha(senha)) {
+            alunoAtual = a.getId();
+            return false;
+        }
+    }
+    return true;
+}
+
 void InterfacePrincipal::menuPrincipal() {
-    int paraLoop = 0;
     while(true) {
         int opcao;
         cout << "(1) Amigos" << endl;
         cout << "(2) Grupos de estudo" << endl;
         cout << "(3) Gerenciar perfil" << endl;
         cout << "(4) Visualizar grafo" << endl;
-        cout << "(5) Sair da conta" << endl;
+        cout << "(0) Sair da conta" << endl;
         opcao = getInt();
         switch(opcao) {
             case 1:
@@ -89,11 +104,9 @@ void InterfacePrincipal::menuPrincipal() {
             case 4:
                 ids.imprimeGrafo();
                 break;
-            default:
-                paraLoop = 1;
+            case 0:
+                return;
         }
-        if(paraLoop == 1)
-            break;
     }
 }
 

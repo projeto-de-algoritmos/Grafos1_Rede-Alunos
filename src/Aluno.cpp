@@ -46,6 +46,16 @@ int Aluno::getId() {
     return id;
 }
 
-vector <int> Aluno::getConexoes() {
-    return conexoes;
+bool Aluno::verificaSenha(string senha) {
+    if(this->senha == senha)
+        return true;
+    else
+        return false;
+}
+
+bool Aluno::verificaUsuario(string usuario) {
+    if(this->usuario == usuario)
+        return true;
+    else
+        return false;
 }
