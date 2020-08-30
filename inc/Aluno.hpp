@@ -13,8 +13,6 @@ private:
     string nome;
     string usuario;
     string senha;
-    vector <int> conexoes;
-
 
 public:
     Aluno(int id, int matricula, string nome, string usuario,string senha); 
@@ -26,8 +24,10 @@ public:
     void setUsuario(string usuario);  
     string getSenha();
     void setSenha(string senha); 
-    int getId();
-    vector <int> getConexoes();
+    int getId(); 
+    void imprimeDados(); 
+    bool verificaUsuario(string usuario);
+    bool verificaSenha(string senha);
 };
 
 #endif 

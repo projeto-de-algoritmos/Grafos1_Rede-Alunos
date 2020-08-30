@@ -11,7 +11,7 @@ class InterfacePrincipal {
 private:
     Grafo ids;
     vector <Aluno> alunos;
-    int idUsuario; 
+    int alunoAtual;
 public:
     InterfacePrincipal();
     void menuLogin();
@@ -22,10 +22,11 @@ public:
     void menuGrupos();  
     void menuConfiguracao();  
     void menuAtualizacao();  
+    void mostrarPerfil(); 
     string getString();
     int getInt();
-    int getIdUsuario(); 
-    void setIdusuario(int idUsuario); 
+    bool verificaCredenciais(string usuario, string senha);
+    void adicionarAmigo();
 };
 
 #endif
