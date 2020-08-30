@@ -54,6 +54,7 @@ void InterfacePrincipal::menuCriarConta() {
     Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
     alunos.push_back(aluno);
     ids.adicionaAluno(aluno);
+    setIdusuario(ids.getTamanho());
     menuPrincipal();
 }
 
@@ -137,4 +138,11 @@ void InterfacePrincipal::menuAtualizacao(){
     cout << "(2) Senha" << endl; 
     cout << "(3) Voltar" << endl; 
     opcao = getInt(); 
+}
+
+void InterfacePrincipal::setIdusuario( int idUsuario){
+    this->idUsuario = idUsuario; 
+}
+int InterfacePrincipal::getIdUsuario(){
+    return idUsuario; 
 }
