@@ -116,6 +116,14 @@ void InterfacePrincipal::menuAmigos() {
     cout << "(2) Adicionar amigo" << endl;
     cout << "(3) Voltar" << endl;
     opcao = getInt();
+    if(opcao == 2)
+        adicionarAmigo();
+}
+
+void InterfacePrincipal::adicionarAmigo() {
+    cout << "Id do aluno: ";
+    int id = getInt();
+    ids.conectar(alunoAtual, id);
 }
 
 void InterfacePrincipal::menuGrupos() {

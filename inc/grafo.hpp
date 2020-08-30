@@ -16,6 +16,7 @@ public:
     int getTamanho();
     void imprimeGrafo();
     void novoVertice();
+    void conectar(int id1, int id2);
 };
 
 #endif

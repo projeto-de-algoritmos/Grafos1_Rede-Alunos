@@ -25,6 +25,7 @@ public:
     string getString();
     int getInt();
     bool verificaCredenciais(string usuario, string senha);
+    void adicionarAmigo();
 };
 
 #endif
