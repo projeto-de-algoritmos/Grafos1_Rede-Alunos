@@ -44,19 +44,45 @@ void InterfacePrincipal::menuLogin() {
 void InterfacePrincipal::menuCriarConta() {
     string nome, usuario, senha;
     int matricula;
-    cout << "Matricula: ";
-    matricula = getInt();
-    cout << "Nome completo: ";
-    nome = getString();
-    cout << "Nome de usuário: ";
-    usuario = getString();
-    cout << "Senha: ";
-    senha = getString();
-    Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
-    alunoAtual = ids.getTamanho();
-    alunos.push_back(aluno);
-    ids.novoVertice();
-    menuPrincipal();
+    bool validacao; 
+    while(true){  
+        cout << "Matricula: ";
+        matricula = getInt();
+        cout << "Nome completo: ";
+        nome = getString();
+        cout << "Nome de usuário: ";
+        usuario = getString();
+        cout << "Senha: ";
+        senha = getString();
+        Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
+        validacao = validacaoCadastro(aluno); 
+        if(validacao){
+            alunoAtual = ids.getTamanho();
+            alunos.push_back(aluno);
+            ids.novoVertice();
+            menuPrincipal();
+            break; 
+        }
+        else{
+            int opcao; 
+            cout << "Conta já cadastrada!" << endl;
+            cout << "(1) Fazer Login " << endl;
+            cout << "(2) Novo cadastro" << endl;
+            opcao = getInt(); 
+            if(opcao == 1)
+                menuFazerLogin();              
+        }
+    }
+}
+
+bool InterfacePrincipal::validacaoCadastro(Aluno aluno){
+    for(Aluno i: alunos){
+        if(i.getMatricula() == aluno.getMatricula())
+            return false; 
+    } 
+    return true; 
+    
+    
 }
 
 void InterfacePrincipal::menuFazerLogin() {
@@ -107,7 +133,7 @@ void InterfacePrincipal::menuPrincipal() {
                 ids.imprimeGrafo();
                 break;
             case 0:
-                return;
+                return; 
         }
     }
 }
