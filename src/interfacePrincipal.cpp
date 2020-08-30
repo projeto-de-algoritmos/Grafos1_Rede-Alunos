@@ -2,6 +2,7 @@
 #include "Aluno.hpp"
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -124,9 +125,12 @@ void InterfacePrincipal::menuAmigos() {
 }
 
 void InterfacePrincipal::mostrarAmigos() {
+    cout << "Numero de amigos: " << ids.getLinhaIds(alunoAtual).size()<< endl;
+    vector <string> nomesAmigos;
     for (int i: ids.getLinhaIds(alunoAtual)){
-        cout << alunos[i].getNome()<< endl;
+        nomesAmigos.push_back(alunos[i].getNome());
     }
+    sort(nomesAmigos.begin(), nomesAmigos.end(), [](string a, string b) {return (a > b); }); 
 }
 void InterfacePrincipal::adicionarAmigo() {
     cout << "Id do aluno: ";
