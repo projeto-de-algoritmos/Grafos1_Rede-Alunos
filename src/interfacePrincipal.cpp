@@ -28,14 +28,14 @@ void InterfacePrincipal::menuLogin() {
     while(true) {
         cout << "(1) Criar conta" << endl;
         cout << "(2) Fazer login" << endl;
-        cout << "(3) Sair" << endl;
+        cout << "(0) Sair" << endl;
         opcao = getInt();
         if(opcao == 1)
             menuCriarConta();
         else if(opcao == 2)
             menuFazerLogin();
-        else 
-            break; 
+        else
+            break;
     }
 }
 
@@ -52,6 +52,7 @@ void InterfacePrincipal::menuCriarConta() {
     cout << "Senha: ";
     senha = getString();
     Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
+    alunoAtual = ids.getTamanho();
     alunos.push_back(aluno);
     ids.novoVertice();
     menuPrincipal();
@@ -159,4 +160,13 @@ void InterfacePrincipal::menuAtualizacao(){
     cout << "(2) Senha" << endl; 
     cout << "(3) Voltar" << endl; 
     opcao = getInt(); 
+    if(opcao == 1) {
+        cout << "Nome: ";
+        string nome = getString();
+        alunos[alunoAtual].setNome(nome);
+    } else if(opcao == 2) {
+        cout << "Senha: ";
+        string senha = getString();
+        alunos[alunoAtual].setSenha(senha);
+    }
 }
