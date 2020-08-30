@@ -231,7 +231,8 @@ void InterfacePrincipal::menuAtualizacao(){
     cout << "(1) Nome "  << endl;
     cout << "(2) Usuario "  << endl;
     cout << "(3) Senha" << endl; 
-    cout << "(4) Voltar" << endl; 
+    cout << "(4) Matrícula" << endl;
+    cout << "(0) Voltar" << endl; 
     opcao = getInt(); 
     if(opcao == 1) {
         cout << "Nome: ";
@@ -245,6 +246,10 @@ void InterfacePrincipal::menuAtualizacao(){
         cout << "Senha: ";
         string senha = getString();
         alunos[alunoAtual].setSenha(senha);
+    } else if(opcao == 4) {
+        cout << "Matrícula: ";
+        int matricula = getInt();
+        alunos[alunoAtual].setMatricula(matricula);
     }
 }
 
