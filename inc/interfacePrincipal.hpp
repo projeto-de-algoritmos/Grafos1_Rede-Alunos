@@ -29,6 +29,7 @@ public:
     bool validacaoCadastro(Aluno aluno);  
     void adicionarAmigo();
     void mostrarAmigos(); 
+    void removerAmigo();
 };
 
 #endif

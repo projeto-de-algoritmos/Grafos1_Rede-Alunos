@@ -17,6 +17,8 @@ public:
     void imprimeGrafo();
     void novoVertice();
     void conectar(int id1, int id2);
+    void desconectar(int id1, int id2);
+    void localizaDeleta(int id1, int id2);
     vector <int> getLinhaIds(int id); 
 };
 

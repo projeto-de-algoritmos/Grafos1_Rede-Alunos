@@ -153,12 +153,26 @@ void InterfacePrincipal::menuAmigos() {
     int opcao;
     cout << "(1) Meus amigos" << endl;
     cout << "(2) Adicionar amigo" << endl;
-    cout << "(3) Voltar" << endl;
+    cout << "(3) Remover amigo" << endl;
+    cout << "(0) Voltar" << endl;
     opcao = getInt();
     if(opcao == 1)
         mostrarAmigos(); 
     else if(opcao == 2)
         adicionarAmigo();
+    else if(opcao == 3)
+        removerAmigo();
+}
+
+void InterfacePrincipal::removerAmigo() {
+    cout << "Nome de usuario: ";
+    string nome = getString();
+    for(Aluno a: alunos) {
+        if(nome == a.getNome()) {
+            ids.desconectar(alunoAtual, a.getId());
+            break;
+        }
+    }
 }
 
 void InterfacePrincipal::mostrarAmigos() {

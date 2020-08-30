@@ -27,6 +27,18 @@ void Grafo::conectar(int id1, int id2) {
     ids[id2].push_back(id1);
 }
 
+void Grafo::desconectar(int id1, int id2) {
+    localizaDeleta(id1, id2);
+    localizaDeleta(id2, id1);
+}
+
+void Grafo::localizaDeleta(int id1, int id2) {
+    for(int i = 0; i < ids[id1].size(); i++) {
+        if(ids[id1][i] == id2)
+            ids[id1].erase(ids[id1].begin() + i);
+    }
+}
+
 vector <int> Grafo::getLinhaIds(int id){
     return ids[id]; 
 } 
