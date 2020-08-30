@@ -26,3 +26,7 @@ void Grafo::conectar(int id1, int id2) {
     ids[id1].push_back(id2);
     ids[id2].push_back(id1);
 }
+
+vector <int> Grafo::getLinhaIds(int id){
+    return ids[id]; 
+} 

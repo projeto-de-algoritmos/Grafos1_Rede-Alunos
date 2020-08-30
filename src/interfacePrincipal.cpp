@@ -117,10 +117,17 @@ void InterfacePrincipal::menuAmigos() {
     cout << "(2) Adicionar amigo" << endl;
     cout << "(3) Voltar" << endl;
     opcao = getInt();
-    if(opcao == 2)
+    if(opcao == 1)
+        mostrarAmigos(); 
+    else if(opcao == 2)
         adicionarAmigo();
 }
 
+void InterfacePrincipal::mostrarAmigos() {
+    for (int i: ids.getLinhaIds(alunoAtual)){
+        cout << alunos[i].getNome()<< endl;
+    }
+}
 void InterfacePrincipal::adicionarAmigo() {
     cout << "Id do aluno: ";
     int id = getInt();

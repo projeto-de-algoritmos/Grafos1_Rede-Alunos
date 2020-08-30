@@ -17,6 +17,7 @@ public:
     void imprimeGrafo();
     void novoVertice();
     void conectar(int id1, int id2);
+    vector <int> getLinhaIds(int id); 
 };
 
 #endif
