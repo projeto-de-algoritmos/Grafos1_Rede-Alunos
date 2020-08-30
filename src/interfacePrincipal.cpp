@@ -46,6 +46,7 @@ void InterfacePrincipal::menuCriarConta() {
     int matricula;
     bool validacao; 
     while(true){  
+        cout << "Criação de Conta" << endl << endl; 
         cout << "Matricula: ";
         matricula = getInt();
         cout << "Nome completo: ";
@@ -60,8 +61,9 @@ void InterfacePrincipal::menuCriarConta() {
             alunoAtual = ids.getTamanho();
             alunos.push_back(aluno);
             ids.novoVertice();
+            cout << "Conta criada com sucesso!" << endl; 
             menuPrincipal();
-            break; 
+            return; 
         }
         else{
             int opcao; 
@@ -69,8 +71,10 @@ void InterfacePrincipal::menuCriarConta() {
             cout << "(1) Fazer Login " << endl;
             cout << "(2) Novo cadastro" << endl;
             opcao = getInt(); 
-            if(opcao == 1)
-                menuFazerLogin();              
+            if(opcao == 1){
+                menuFazerLogin();
+                return; 
+            }           
         }
     }
 }
@@ -80,9 +84,7 @@ bool InterfacePrincipal::validacaoCadastro(Aluno aluno){
         if(i.getMatricula() == aluno.getMatricula())
             return false; 
     } 
-    return true; 
-    
-    
+    return true;     
 }
 
 void InterfacePrincipal::menuFazerLogin() {
@@ -94,8 +96,17 @@ void InterfacePrincipal::menuFazerLogin() {
         cout << "Senha: ";
         senha = getString();
         loop = verificaCredenciais(usuario, senha);
-        if(loop == true)
+        if(loop == true){
+            int opcao; 
             cout << "Credenciais incorretas." << endl;
+            cout << "(1)Tentar novamente" << endl;
+            cout << "(2)Cadastre-se" << endl;
+            opcao = getInt(); 
+            if(opcao == 2){
+                menuCriarConta();
+                return; 
+            } 
+        }
     }
     menuPrincipal();
 }
@@ -157,10 +168,19 @@ void InterfacePrincipal::mostrarAmigos() {
         nomesAmigos.push_back(alunos[i].getNome());
     }
     sort(nomesAmigos.begin(), nomesAmigos.end(), [](string a, string b) {return (a > b); }); 
+    for(string j: nomesAmigos)
+        cout << j << endl; 
 }
 void InterfacePrincipal::adicionarAmigo() {
-    cout << "Id do aluno: ";
-    int id = getInt();
+    int id;
+    cout << "Usuario do aluno: ";
+    string usuarioAluno = getString();
+    for(Aluno i: alunos){
+        if(i.getUsuario() == usuarioAluno){
+            id = i.getId();
+            break;   
+        }
+    }
     ids.conectar(alunoAtual, id);
 }
 
@@ -194,8 +214,8 @@ void InterfacePrincipal::menuAtualizacao(){
     int opcao; 
     mostrarPerfil(); 
     cout << "Escolha o dado que deseja atualizar:" << endl << endl;
-    cout << "(1) Nome: "  << endl;
-    cout << "(2) Usuario: "  << endl;
+    cout << "(1) Nome "  << endl;
+    cout << "(2) Usuario "  << endl;
     cout << "(3) Senha" << endl; 
     cout << "(4) Voltar" << endl; 
     opcao = getInt(); 
