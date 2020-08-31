@@ -30,6 +30,7 @@ public:
     void adicionarAmigo();
     void mostrarAmigos(); 
     void removerAmigo();
+    void sugerirAmigos();
 };
 
 #endif

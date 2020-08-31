@@ -154,6 +154,7 @@ void InterfacePrincipal::menuAmigos() {
     cout << "(1) Meus amigos" << endl;
     cout << "(2) Adicionar amigo" << endl;
     cout << "(3) Remover amigo" << endl;
+    cout << "(4) Amigos sugeridos" << endl;
     cout << "(0) Voltar" << endl;
     opcao = getInt();
     if(opcao == 1)
@@ -162,6 +163,12 @@ void InterfacePrincipal::menuAmigos() {
         adicionarAmigo();
     else if(opcao == 3)
         removerAmigo();
+    else if(opcao == 4)
+        sugerirAmigos();
+}
+
+void InterfacePrincipal::sugerirAmigos() {
+    ids.getCiclos(alunoAtual);
 }
 
 void InterfacePrincipal::removerAmigo() {
