@@ -168,7 +168,7 @@ void InterfacePrincipal::menuAmigos() {
 }
 
 void InterfacePrincipal::sugerirAmigos() {
-    ids.getCiclos(alunoAtual);
+    ids.bfs(alunoAtual);
 }
 
 void InterfacePrincipal::removerAmigo() {

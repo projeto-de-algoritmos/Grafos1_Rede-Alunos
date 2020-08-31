@@ -71,3 +71,24 @@ void Grafo::getCiclos(int vertice) {
     vector <int> predecessor(tamanho, -1);
     dfsCiclo(vertice, visitados, finalizados, predecessor);
 }
+
+void Grafo::bfs(int vertice) {
+    vector <bool> visitados(tamanho, false);
+    vector <int> fila;  
+    visitados[vertice] = true; 
+    fila.push_back(vertice); 
+
+    while(!fila.empty()){
+        int u = fila[0]; 
+        cout << u+1 << " -> ";
+        fila.erase(fila.begin());
+        for(int i:ids[u]){
+            if(!visitados[i]){
+                visitados[i] = true;
+                fila.push_back(i); 
+                cout << i+1 << " ";
+            }
+        }
+        cout << endl;
+    }
+}
