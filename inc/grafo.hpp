@@ -23,7 +23,7 @@ public:
     void getCiclos(int vertice);
     void dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor);
     void imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor);
-    void bfs(int vertice); 
+    vector <int> bfs(int vertice); 
 };
 
 #endif

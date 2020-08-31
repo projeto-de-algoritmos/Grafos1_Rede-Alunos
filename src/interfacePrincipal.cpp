@@ -168,7 +168,10 @@ void InterfacePrincipal::menuAmigos() {
 }
 
 void InterfacePrincipal::sugerirAmigos() {
-    ids.bfs(alunoAtual);
+    vector <int> amigosRecomendados = ids.bfs(alunoAtual); 
+    for(int i : amigosRecomendados){
+        cout << alunos[i].getUsuario() << endl;
+    }
 }
 
 void InterfacePrincipal::removerAmigo() {
@@ -188,7 +191,7 @@ void InterfacePrincipal::mostrarAmigos() {
     for (int i: ids.getLinhaIds(alunoAtual)){
         nomesAmigos.push_back(alunos[i].getNome());
     }
-    sort(nomesAmigos.begin(), nomesAmigos.end(), [](string a, string b) {return (a > b); }); 
+    sort(nomesAmigos.begin(), nomesAmigos.end(), [](string a, string b) {return (a < b); }); 
     for(string j: nomesAmigos)
         cout << j << endl; 
 }
