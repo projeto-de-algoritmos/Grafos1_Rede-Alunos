@@ -20,9 +20,9 @@ public:
     void desconectar(int id1, int id2);
     void localizaDeleta(int id1, int id2);
     vector <int> getListaAdjacencia(int id); 
-    void getCiclos(int vertice);
-    void dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor);
-    void imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor);
+    vector <vector <int>> getCiclos();
+    void dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor, vector <bool> &buscados, vector <vector <int>> &ciclos);
+    vector <int> constroiCiclo(int vertice, int verticeConectado, vector <int> &predecessor);
     vector <int> bfs(int vertice);
     vector <int> GrauConectividade( int vertice); 
     int getQtdDesconectados();

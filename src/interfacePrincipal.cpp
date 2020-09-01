@@ -70,8 +70,8 @@ void InterfacePrincipal::menuEstatisticas() {
     cout << ids.getTamanho() << " usuários estão cadastrados." << endl;
     int qtdDesconectados = ids.getQtdDesconectados();
     cout << ids.getTamanho() - qtdDesconectados << " usuários estão conectados." << endl;
-    cout << ids.getQtdDesconectados() << " usuários estão não estão conectados." << endl;
-    cout << " ciclos foram formados" << endl;
+    cout << ids.getQtdDesconectados() << " usuários não estão conectados." << endl;
+    cout << ids.getCiclos().size() <<" ciclos foram formados" << endl;
 }
 
 void InterfacePrincipal::menuCriarConta() {

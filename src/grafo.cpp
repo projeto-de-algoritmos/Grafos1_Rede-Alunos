@@ -45,32 +45,41 @@ void Grafo::localizaDeleta(int id1, int id2) {
     }
 }
 
-void Grafo::imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor) {
+vector <int> Grafo::constroiCiclo(int vertice, int verticeConectado, vector <int> &predecessor) {
+    vector <int> ciclo;
     while(verticeConectado != vertice) {
-        cout << verticeConectado << "   ";
+        ciclo.push_back(verticeConectado);
         verticeConectado = predecessor[verticeConectado];
     }
-    cout << vertice << endl;
+    ciclo.push_back(vertice);
+    return ciclo;
 }
 
-void Grafo::dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor) {
+void Grafo::dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor, vector <bool> &buscados, vector <vector <int>> &ciclos) {
     visitados[vertice] = true;
     int tamanhoLista = ids[vertice].size();
     for(int i = 0; i < tamanhoLista; i++) {
         int verticeConectado = ids[vertice][i];
-        if(visitados[verticeConectado] == false) {
+        if(!visitados[verticeConectado]) {
             predecessor[verticeConectado] = vertice;
-            dfsCiclo(verticeConectado, visitados, finalizados, predecessor);
-        } else if(finalizados[verticeConectado] == true)
-            imprimeCiclo(vertice, verticeConectado, predecessor);
+            dfsCiclo(verticeConectado, visitados, finalizados, predecessor, buscados, ciclos);
+        } else if(finalizados[verticeConectado])
+            ciclos.push_back(constroiCiclo(vertice, verticeConectado, predecessor));
     }
-    finalizados[vertice] = 1;
+    finalizados[vertice] = true;
+    buscados[vertice] = true;
 }
 
-void Grafo::getCiclos(int vertice) {
-    vector <bool> visitados(tamanho, false), finalizados(tamanho, false);
-    vector <int> predecessor(tamanho, -1);
-    dfsCiclo(vertice, visitados, finalizados, predecessor);
+vector <vector <int>> Grafo::getCiclos() {
+    vector <vector <int>> ciclos;
+    vector <bool> buscados(tamanho, false);
+    for(int i = 0; i < tamanho; i++) {
+        vector <bool> visitados(tamanho, false), finalizados(tamanho, false);
+        vector <int> predecessor(tamanho, -1);
+        if(!buscados[i])
+            dfsCiclo(i, visitados, finalizados, predecessor, buscados, ciclos);
+    }
+    return ciclos;
 }
 
 vector <int> Grafo::bfs(int vertice) {
