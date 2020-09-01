@@ -19,12 +19,13 @@ public:
     void conectar(int id1, int id2);
     void desconectar(int id1, int id2);
     void localizaDeleta(int id1, int id2);
-    vector <int> getLinhaIds(int id); 
+    vector <int> getListaAdjacencia(int id); 
     void getCiclos(int vertice);
     void dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor);
     void imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor);
-    vector <int> bfs(int vertice); 
-    vector <int> GrauConectividade(vector <int> verticesConectados, int vertice); 
+    vector <int> bfs(int vertice);
+    vector <int> GrauConectividade( int vertice); 
+
 };
 
 #endif

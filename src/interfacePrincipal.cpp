@@ -169,7 +169,7 @@ void InterfacePrincipal::menuAmigos() {
 
 void InterfacePrincipal::sugerirAmigos() {
     vector <int> amigosRecomendados = ids.bfs(alunoAtual); 
-    vector <int> pesos = ids.GrauConectividade(amigosRecomendados,alunoAtual);
+    vector <int> pesos = ids.GrauConectividade(alunoAtual);
     for(int i : amigosRecomendados){
         cout << alunos[i].getUsuario() << "  "<< pesos[i] <<"Amigos em Comum" << endl;
     }
@@ -177,27 +177,28 @@ void InterfacePrincipal::sugerirAmigos() {
 
 void InterfacePrincipal::removerAmigo() {
     cout << "Nome de usuario: ";
-    string nome = getString();
-    for(Aluno a: alunos) {
-        if(nome == a.getNome()) {
-            ids.desconectar(alunoAtual, a.getId());
+    string usuario = getString();
+    for(int id: ids.getListaAdjacencia(alunoAtual)) {
+        if(usuario == alunos[id].getNome()) {
+            ids.desconectar(alunoAtual, id);
             break;
         }
     }
 }
 
 void InterfacePrincipal::mostrarAmigos() {
-    cout << "Numero de amigos: " << ids.getLinhaIds(alunoAtual).size()<< endl;
+    cout << "Numero de amigos: " << ids.getListaAdjacencia(alunoAtual).size()<< endl;
     vector <string> nomesAmigos;
-    for (int i: ids.getLinhaIds(alunoAtual)){
+    for (int i: ids.getListaAdjacencia(alunoAtual)){
         nomesAmigos.push_back(alunos[i].getNome());
     }
     sort(nomesAmigos.begin(), nomesAmigos.end(), [](string a, string b) {return (a < b); }); 
     for(string j: nomesAmigos)
         cout << j << endl; 
 }
+
 void InterfacePrincipal::adicionarAmigo() {
-    int id;
+    int id = -1;
     cout << "Usuario do aluno: ";
     string usuarioAluno = getString();
     for(Aluno i: alunos){
@@ -206,8 +207,23 @@ void InterfacePrincipal::adicionarAmigo() {
             break;   
         }
     }
-    ids.conectar(alunoAtual, id);
+    if(validacaoAmizade(alunoAtual, id))
+        ids.conectar(alunoAtual, id); 
 }
+
+bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
+    if(id2 == -1){
+        cout << "Usuario não encontrado" << endl; 
+        return false; 
+    }
+    else if(id1 == id2)
+        return false; 
+    for(int i: ids.getListaAdjacencia(id1)){
+        if(i == id2)
+            return false;
+    }
+    return true; 
+} 
 
 void InterfacePrincipal::menuGrupos() {
     int opcao; 

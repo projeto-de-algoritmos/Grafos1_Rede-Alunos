@@ -38,14 +38,12 @@ void Grafo::desconectar(int id1, int id2) {
 void Grafo::localizaDeleta(int id1, int id2) {
     int tamanhoLista = ids[id1].size();
     for(int i = 0; i < tamanhoLista; i++) {
-        if(ids[id1][i] == id2)
+        if(ids[id1][i] == id2) {
             ids[id1].erase(ids[id1].begin() + i);
+            break;
+        }
     }
 }
-
-vector <int> Grafo::getLinhaIds(int id){
-    return ids[id]; 
-} 
 
 void Grafo::imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor) {
     while(verticeConectado != vertice) {
@@ -111,7 +109,7 @@ vector <int> Grafo::bfs(int vertice) {
     return amigosRecomendados;     
 }
 
-vector <int> Grafo::GrauConectividade(vector <int> verticesConectados,int vertice){
+vector <int> Grafo::GrauConectividade(int vertice){
     vector<int> pesos(tamanho, 0);
     vector<int> vizinhos = ids[vertice]; 
     for(int i:vizinhos){
@@ -121,4 +119,7 @@ vector <int> Grafo::GrauConectividade(vector <int> verticesConectados,int vertic
         }
     }
     return pesos;  
+}
+vector <int> Grafo::getListaAdjacencia(int id) {
+    return ids[id];
 }
