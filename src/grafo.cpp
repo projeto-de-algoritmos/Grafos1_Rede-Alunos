@@ -1,5 +1,8 @@
 #include "grafo.hpp"
 
+#include <algorithm>
+
+
 Grafo::Grafo() {
     tamanho = 0;
 }
@@ -75,7 +78,7 @@ void Grafo::getCiclos(int vertice) {
 vector <int> Grafo::bfs(int vertice) {
     vector <bool> visitados(tamanho, false);
     vector <int> fila; 
-    vector <int> amigosRecomendados;  
+    vector<int> amigosRecomendados; 
     int qntdVizinhos = ids[vertice].size();
     int cont = 0; 
     int aux =0; 
@@ -84,20 +87,17 @@ vector <int> Grafo::bfs(int vertice) {
     fila.push_back(vertice);
     while(!fila.empty()){
         int u = fila[0]; 
-        cout << u+1 << " -> ";
         fila.erase(fila.begin());
         for(int i:ids[u]){
             if(!visitados[i]){
                 visitados[i] = true;
                 fila.push_back(i); 
-                cout << i+1 << " ";
                 if(sugerir){
-                    amigosRecomendados.push_back(i);
+                   amigosRecomendados.push_back(i); 
                 }
-            }
+            } 
             cont++;
         } 
-        cout << endl;
         if(cont == qntdVizinhos){
             aux = cont; 
             for(int j=0; j<qntdVizinhos; j++){
@@ -106,7 +106,19 @@ vector <int> Grafo::bfs(int vertice) {
             sugerir = true; 
         }
         if(cont == aux)
-            break;   
+            break; 
     }
     return amigosRecomendados;     
+}
+
+vector <int> Grafo::GrauConectividade(vector <int> verticesConectados,int vertice){
+    vector<int> pesos(tamanho, 0);
+    vector<int> vizinhos = ids[vertice]; 
+    for(int i:vizinhos){
+        for(int j : ids[i]){
+            cout << j <<"[" <<pesos[j] << "]"; 
+            pesos[j]++; 
+        }
+    }
+    return pesos;  
 }

@@ -169,9 +169,9 @@ void InterfacePrincipal::menuAmigos() {
 
 void InterfacePrincipal::sugerirAmigos() {
     vector <int> amigosRecomendados = ids.bfs(alunoAtual); 
-    cout << "--------------" << endl; 
+    vector <int> pesos = ids.GrauConectividade(amigosRecomendados,alunoAtual);
     for(int i : amigosRecomendados){
-        cout << alunos[i].getUsuario() << endl;
+        cout << alunos[i].getUsuario() << "  "<< pesos[i] <<"Amigos em Comum" << endl;
     }
 }
 

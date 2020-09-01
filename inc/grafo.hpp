@@ -24,6 +24,7 @@ public:
     void dfsCiclo(int vertice, vector <bool> &visitados, vector <bool> &finalizados, vector <int> &predecessor);
     void imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor);
     vector <int> bfs(int vertice); 
+    vector <int> GrauConectividade(vector <int> verticesConectados, int vertice); 
 };
 
 #endif
