@@ -177,10 +177,10 @@ void InterfacePrincipal::sugerirAmigos() {
 
 void InterfacePrincipal::removerAmigo() {
     cout << "Nome de usuario: ";
-    string nome = getString();
-    for(Aluno a: alunos) {
-        if(nome == a.getNome()) {
-            ids.desconectar(alunoAtual, a.getId());
+    string usuario = getString();
+    for(int id: ids.getListaAdjacencia(alunoAtual)) {
+        if(usuario == alunos[id].getNome()) {
+            ids.desconectar(alunoAtual, id);
             break;
         }
     }

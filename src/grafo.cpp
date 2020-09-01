@@ -35,8 +35,10 @@ void Grafo::desconectar(int id1, int id2) {
 void Grafo::localizaDeleta(int id1, int id2) {
     int tamanhoLista = ids[id1].size();
     for(int i = 0; i < tamanhoLista; i++) {
-        if(ids[id1][i] == id2)
+        if(ids[id1][i] == id2) {
             ids[id1].erase(ids[id1].begin() + i);
+            break;
+        }
     }
 }
 
@@ -109,4 +111,8 @@ vector <int> Grafo::bfs(int vertice) {
             break;   
     }
     return amigosRecomendados;     
+}
+
+vector <int> Grafo::getListaAdjacencia(int id) {
+    return ids[id];
 }
