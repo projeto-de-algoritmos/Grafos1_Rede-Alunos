@@ -169,6 +169,7 @@ void InterfacePrincipal::menuAmigos() {
 
 void InterfacePrincipal::sugerirAmigos() {
     vector <int> amigosRecomendados = ids.bfs(alunoAtual); 
+    cout << "--------------" << endl; 
     for(int i : amigosRecomendados){
         cout << alunos[i].getUsuario() << endl;
     }

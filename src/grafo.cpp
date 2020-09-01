@@ -76,7 +76,10 @@ vector <int> Grafo::bfs(int vertice) {
     vector <bool> visitados(tamanho, false);
     vector <int> fila; 
     vector <int> amigosRecomendados;  
-    int camada = 0; 
+    int qntdVizinhos = ids[vertice].size();
+    int cont = 0; 
+    int aux =0; 
+    bool sugerir = false;  
     visitados[vertice] = true; 
     fila.push_back(vertice);
     while(!fila.empty()){
@@ -88,13 +91,22 @@ vector <int> Grafo::bfs(int vertice) {
                 visitados[i] = true;
                 fila.push_back(i); 
                 cout << i+1 << " ";
-                if(camada == 2){
+                if(sugerir){
                     amigosRecomendados.push_back(i);
                 }
             }
+            cont++;
         } 
         cout << endl;
-        camada++;
+        if(cont == qntdVizinhos){
+            aux = cont; 
+            for(int j=0; j<qntdVizinhos; j++){
+                aux += ids[fila[j]].size(); 
+            }
+            sugerir = true; 
+        }
+        if(cont == aux)
+            break;   
     }
     return amigosRecomendados;     
 }
