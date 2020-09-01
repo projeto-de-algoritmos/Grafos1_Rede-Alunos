@@ -10,27 +10,31 @@ InterfacePrincipal::InterfacePrincipal() {
     menuLogin();
 }
 
-string InterfacePrincipal::getString() {
-    string valor;
-    cin >> valor;
-    cin.ignore(32767, '\n');
-    return valor;
+template <typename T>
+T getInput(string mensagem) {
+    T entrada;
+    bool loop = true;
+    while(loop) {
+        cout << mensagem;
+        loop = false;
+        cin >> entrada;
+        if(cin.fail()) {
+            cin.clear();
+            cout << "Entrada inválida." << endl;
+            loop = true;
+        }
+        cin.ignore(32767, '\n');
+    }
+    return entrada;
 }
 
-int InterfacePrincipal::getInt() {
-    int valor;
-    cin >> valor;
-    cin.ignore(32767, '\n');
-    return valor;
-}
 
 void InterfacePrincipal::menuLogin() {
-    int opcao;
     while(true) {
         cout << "(1) Criar conta" << endl;
         cout << "(2) Fazer login" << endl;
         cout << "(0) Sair" << endl;
-        opcao = getInt();
+        int opcao = getInput<int>("");
         if(opcao == 1)
             menuCriarConta();
         else if(opcao == 2)
@@ -42,19 +46,13 @@ void InterfacePrincipal::menuLogin() {
 
 
 void InterfacePrincipal::menuCriarConta() {
-    string nome, usuario, senha;
-    int matricula;
     bool validacao; 
     while(true){  
         cout << "Criação de Conta" << endl << endl; 
-        cout << "Matricula: ";
-        matricula = getInt();
-        cout << "Nome completo: ";
-        nome = getString();
-        cout << "Nome de usuário: ";
-        usuario = getString();
-        cout << "Senha: ";
-        senha = getString();
+        int matricula = getInput<int>("Matrícula: ");
+        string nome = getInput<string>("Nome completo: ");
+        string usuario = getInput<string>("Nome de usuário: ");
+        string senha = getInput<string>("Senha: ");
         Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
         validacao = validacaoCadastro(aluno); 
         if(validacao){
@@ -66,11 +64,10 @@ void InterfacePrincipal::menuCriarConta() {
             return; 
         }
         else{
-            int opcao; 
             cout << "Conta já cadastrada!" << endl;
             cout << "(1) Fazer Login " << endl;
             cout << "(2) Novo cadastro" << endl;
-            opcao = getInt(); 
+            int opcao = getInput<int>(""); 
             if(opcao == 1){
                 menuFazerLogin();
                 return; 
@@ -88,20 +85,16 @@ bool InterfacePrincipal::validacaoCadastro(Aluno aluno){
 }
 
 void InterfacePrincipal::menuFazerLogin() {
-    string usuario, senha;
     bool loop = true;
     while(loop) {
-        cout << "Nome de usuário: ";
-        usuario = getString();
-        cout << "Senha: ";
-        senha = getString();
+        string usuario = getInput<string>("Nome de usuário: ");
+        string senha = getInput<string>("Senha: ");
         loop = verificaCredenciais(usuario, senha);
         if(loop == true){
-            int opcao; 
             cout << "Credenciais incorretas." << endl;
             cout << "(1)Tentar novamente" << endl;
             cout << "(2)Cadastre-se" << endl;
-            opcao = getInt(); 
+            int opcao = getInput<int>(""); 
             if(opcao == 2){
                 menuCriarConta();
                 return; 
@@ -123,13 +116,12 @@ bool InterfacePrincipal::verificaCredenciais(string usuario, string senha) {
 
 void InterfacePrincipal::menuPrincipal() {
     while(true) {
-        int opcao;
         cout << "(1) Amigos" << endl;
         cout << "(2) Grupos de estudo" << endl;
         cout << "(3) Gerenciar perfil" << endl;
         cout << "(4) Visualizar grafo" << endl;
         cout << "(0) Sair da conta" << endl;
-        opcao = getInt();
+        int opcao = getInput<int>("");
         switch(opcao) {
             case 1:
                 menuAmigos();     
@@ -150,13 +142,12 @@ void InterfacePrincipal::menuPrincipal() {
 }
 
 void InterfacePrincipal::menuAmigos() {
-    int opcao;
     cout << "(1) Meus amigos" << endl;
     cout << "(2) Adicionar amigo" << endl;
     cout << "(3) Remover amigo" << endl;
     cout << "(4) Amigos sugeridos" << endl;
     cout << "(0) Voltar" << endl;
-    opcao = getInt();
+    int opcao = getInput<int>("");
     if(opcao == 1)
         mostrarAmigos(); 
     else if(opcao == 2)
@@ -176,8 +167,7 @@ void InterfacePrincipal::sugerirAmigos() {
 }
 
 void InterfacePrincipal::removerAmigo() {
-    cout << "Nome de usuario: ";
-    string usuario = getString();
+    string usuario = getInput<string>("Nome de usuário: ");
     for(int id: ids.getListaAdjacencia(alunoAtual)) {
         if(usuario == alunos[id].getNome()) {
             ids.desconectar(alunoAtual, id);
@@ -199,8 +189,7 @@ void InterfacePrincipal::mostrarAmigos() {
 
 void InterfacePrincipal::adicionarAmigo() {
     int id = -1;
-    cout << "Usuario do aluno: ";
-    string usuarioAluno = getString();
+    string usuarioAluno = getInput<string>("Usuário do aluno: ");
     for(Aluno i: alunos){
         if(i.getUsuario() == usuarioAluno){
             id = i.getId();
@@ -226,19 +215,17 @@ bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
 } 
 
 void InterfacePrincipal::menuGrupos() {
-    int opcao; 
     cout << "(1) Meus grupos" << endl;
     cout << "(2) Criar grupo" << endl; 
-    cout << "(3) Voltar" << endl; 
-    opcao = getInt(); 
+    cout << "(0) Voltar" << endl; 
+    int opcao = getInput<int>(""); 
 }
 
 void InterfacePrincipal::menuConfiguracao() {
-    int opcao;
     cout << "(1) Atualizar dados" << endl;
     cout << "(2) Excluir conta" << endl;  
-    cout << "(3) Voltar" << endl; 
-    opcao = getInt(); 
+    cout << "(0) Voltar" << endl; 
+    int opcao = getInput<int>(""); 
 
     if(opcao == 1){
         menuAtualizacao(); 
@@ -252,7 +239,6 @@ void InterfacePrincipal::menuConfiguracao() {
 }
 
 void InterfacePrincipal::menuAtualizacao(){ 
-    int opcao; 
     mostrarPerfil(); 
     cout << "Escolha o dado que deseja atualizar:" << endl << endl;
     cout << "(1) Nome "  << endl;
@@ -260,22 +246,18 @@ void InterfacePrincipal::menuAtualizacao(){
     cout << "(3) Senha" << endl; 
     cout << "(4) Matrícula" << endl;
     cout << "(0) Voltar" << endl; 
-    opcao = getInt(); 
+    int opcao = getInput<int>(""); 
     if(opcao == 1) {
-        cout << "Nome: ";
-        string nome = getString();
+        string nome = getInput<string>("Nome: ");
         alunos[alunoAtual].setNome(nome);
     } else if(opcao == 2) {
-        cout << "Usuario: ";
-        string usuario = getString();
+        string usuario = getInput<string>("Usuário: ");
         alunos[alunoAtual].setUsuario(usuario);
     } else if(opcao == 3) {
-        cout << "Senha: ";
-        string senha = getString();
+        string senha = getInput<string>("Senha: ");
         alunos[alunoAtual].setSenha(senha);
     } else if(opcao == 4) {
-        cout << "Matrícula: ";
-        int matricula = getInt();
+        int matricula = getInput<int>("Matrícula: ");
         alunos[alunoAtual].setMatricula(matricula);
     }
 }

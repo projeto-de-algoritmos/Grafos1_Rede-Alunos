@@ -23,8 +23,6 @@ public:
     void menuConfiguracao();  
     void menuAtualizacao();  
     void mostrarPerfil(); 
-    string getString();
-    int getInt();
     bool verificaCredenciais(string usuario, string senha);
     bool validacaoCadastro(Aluno aluno);  
     bool validacaoAmizade(int id1, int id2);
