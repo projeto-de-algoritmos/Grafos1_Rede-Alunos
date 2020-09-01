@@ -33,17 +33,46 @@ void InterfacePrincipal::menuLogin() {
     while(true) {
         cout << "(1) Criar conta" << endl;
         cout << "(2) Fazer login" << endl;
+        cout << "(3) Opções avançadas" << endl;
         cout << "(0) Sair" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuCriarConta();
         else if(opcao == 2)
             menuFazerLogin();
+        else if(opcao == 3)
+            menuAvancado();
         else
             break;
     }
 }
 
+void InterfacePrincipal::menuAvancado() {
+    while(true) {
+        cout << "(1) Modo administrador" << endl;
+        cout << "(2) Estatísticas" << endl;
+        cout << "(0) Voltar" << endl;
+        int opcao = getInput<int>("");
+        if(opcao == 1)
+            menuAdmin();
+        else if(opcao == 2)
+            menuEstatisticas();
+        else
+            break;
+    }
+}
+
+void InterfacePrincipal::menuAdmin() {
+
+}
+
+void InterfacePrincipal::menuEstatisticas() {
+    cout << ids.getTamanho() << " usuários estão cadastrados." << endl;
+    int qtdDesconectados = ids.getQtdDesconectados();
+    cout << ids.getTamanho() - qtdDesconectados << " usuários estão conectados." << endl;
+    cout << ids.getQtdDesconectados() << " usuários estão não estão conectados." << endl;
+    cout << " ciclos foram formados" << endl;
+}
 
 void InterfacePrincipal::menuCriarConta() {
     bool validacao; 

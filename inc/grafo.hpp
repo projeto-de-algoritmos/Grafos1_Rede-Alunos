@@ -25,7 +25,7 @@ public:
     void imprimeCiclo(int vertice, int verticeConectado, vector <int> &predecessor);
     vector <int> bfs(int vertice);
     vector <int> GrauConectividade( int vertice); 
-
+    int getQtdDesconectados();
 };
 
 #endif

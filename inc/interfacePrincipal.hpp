@@ -30,6 +30,9 @@ public:
     void mostrarAmigos(); 
     void removerAmigo();
     void sugerirAmigos();
+    void menuAvancado();
+    void menuAdmin();
+    void menuEstatisticas();
 };
 
 #endif

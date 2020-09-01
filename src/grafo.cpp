@@ -123,3 +123,12 @@ vector <int> Grafo::GrauConectividade(int vertice){
 vector <int> Grafo::getListaAdjacencia(int id) {
     return ids[id];
 }
+
+int Grafo::getQtdDesconectados() {
+    int contador = 0;
+    for(int i = 0; i < tamanho; i++) {
+        if(ids[i].empty())
+            contador++;
+    }
+    return contador;
+}
