@@ -63,7 +63,48 @@ void InterfacePrincipal::menuAvancado() {
 }
 
 void InterfacePrincipal::menuAdmin() {
+    cout << "(1) Conectar usuários" << endl;
+    cout << "(2) Desconectar Usuários" << endl;
+    int opcao = getInput<int>("");
+    if(opcao == 1)
+        menuAmigosAdmin(true);
+    else if(opcao == 2)
+        menuAmigosAdmin(false);
+}
 
+void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
+    cout << "(1) Por nome de usuário" << endl;
+    cout << "(2) Por ID" << endl;
+    int opcao = getInput<int>("");
+    if(opcao == 1) {
+        string usuario1 = getInput<string>("Usuário 1: ");
+        string usuario2 = getInput<string>("Usuário 2: ");
+        vector <int> idUsuarios = procuraIds(usuario1, usuario2);
+        if(adicionar)
+            ids.conectar(idUsuarios[0], idUsuarios[1]);
+        else
+            ids.desconectar(idUsuarios[0], idUsuarios[1]);
+    } else if(opcao == 2) {
+        int id1 = getInput<int>("ID 1: ");
+        int id2 = getInput<int>("ID 2: ");
+        if(adicionar)
+            ids.conectar(id1, id2);
+        else
+            ids.desconectar(id1, id2);
+    }
+}
+
+vector <int> InterfacePrincipal::procuraIds(string usuario1, string usuario2) {
+    vector <int> idUsuarios(2, -1);
+    for(Aluno a: alunos) {
+        if(a.getUsuario() == usuario1)
+            idUsuarios[0] = a.getId();
+        if(a.getUsuario() == usuario2)
+            idUsuarios[1] = a.getId();
+        if(idUsuarios[0] != -1 && idUsuarios[1] != -1)
+            break;
+    }
+    return idUsuarios;
 }
 
 void InterfacePrincipal::menuEstatisticas() {
