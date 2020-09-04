@@ -26,13 +26,19 @@ void Grafo::novoVertice() {
 }
 
 void Grafo::conectar(int id1, int id2) {
-    ids[id1].push_back(id2);
-    ids[id2].push_back(id1);
+    if(id1 < tamanho && id2 < tamanho && id1 >= 0 && id2 >= 0) {
+        ids[id1].push_back(id2);
+        ids[id2].push_back(id1);
+    } else
+        cout << "Entrada inválida" << endl;
 }
 
 void Grafo::desconectar(int id1, int id2) {
-    localizaDeleta(id1, id2);
-    localizaDeleta(id2, id1);
+    if(id1 < tamanho && id2 < tamanho && id1 >= 0 && id2 >= 0) {
+        localizaDeleta(id1, id2);
+        localizaDeleta(id2, id1);
+    } else
+        cout << "Conexão inexistente" << endl;
 }
 
 void Grafo::localizaDeleta(int id1, int id2) {
