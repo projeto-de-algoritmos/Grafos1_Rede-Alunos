@@ -63,13 +63,17 @@ void InterfacePrincipal::menuAvancado() {
 }
 
 void InterfacePrincipal::menuAdmin() {
-    cout << "(1) Conectar usuários" << endl;
-    cout << "(2) Desconectar Usuários" << endl;
-    int opcao = getInput<int>("");
-    if(opcao == 1)
-        menuAmigosAdmin(true);
-    else if(opcao == 2)
-        menuAmigosAdmin(false);
+    while(true) {
+        cout << "(1) Conectar usuários" << endl;
+        cout << "(2) Desconectar Usuários" << endl;
+        int opcao = getInput<int>("");
+        if(opcao == 1)
+            menuAmigosAdmin(true);
+        else if(opcao == 2)
+            menuAmigosAdmin(false);
+        else 
+            break;  
+    }
 }
 
 void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
@@ -89,13 +93,20 @@ void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
     } else if(opcao == 2) {
         int id1 = getInput<int>("ID 1: ");
         int id2 = getInput<int>("ID 2: ");
-        if(validacaoAmizade(id1,id2)){
-            if(adicionar)
+            if(adicionar && validacaoAmizade(id1,id2))
                 ids.conectar(id1, id2);
             else
                 ids.desconectar(id1, id2);
-        }
     }
+}
+
+bool InterfacePrincipal::validacaoUsuario(string usuario){
+    for(Aluno a: alunos){
+        if(a.getUsuario() == usuario)
+            return true; 
+    }
+    return false; 
+
 }
 
 vector <int> InterfacePrincipal::procuraIds(string usuario1, string usuario2) {
@@ -231,6 +242,8 @@ void InterfacePrincipal::menuAmigos() {
             removerAmigo();
         else if(opcao == 4)
             sugerirAmigos();
+        else 
+            return; 
     }
 }
 
@@ -245,7 +258,7 @@ void InterfacePrincipal::sugerirAmigos() {
 void InterfacePrincipal::removerAmigo() {
     string usuario = getInput<string>("Nome de usuário: ");
     for(int id: ids.getListaAdjacencia(alunoAtual)) {
-        if(usuario == alunos[id].getNome()) {
+        if(usuario == alunos[id].getUsuario()) {
             ids.desconectar(alunoAtual, id);
             break;
         }
@@ -256,7 +269,7 @@ void InterfacePrincipal::mostrarAmigos() {
     cout << "Numero de amigos: " << ids.getListaAdjacencia(alunoAtual).size()<< endl;
     vector <string> nomesAmigos;
     for (int i: ids.getListaAdjacencia(alunoAtual)){
-        nomesAmigos.push_back(alunos[i].getNome());
+        nomesAmigos.push_back(alunos[i].getUsuario());
     }
     sort(nomesAmigos.begin(), nomesAmigos.end(), [](string a, string b) {return (a < b); }); 
     for(string j: nomesAmigos)
@@ -277,16 +290,18 @@ void InterfacePrincipal::adicionarAmigo() {
 }
 
 bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
-    if(id2 == -1){
-        cout << "Usuario não encontrado" << endl; 
+    if(id2 == -1 || id1 > ids.getTamanho() || id2 > ids.getTamanho()){
+        cout << "Falhou!" << endl; 
         return false; 
     }
     else if(id1 == id2)
         return false; 
+
     for(int i: ids.getListaAdjacencia(id1)){
         if(i == id2)
             return false;
     }
+    cout << "Amizade formada" << endl; 
     return true; 
 } 
 

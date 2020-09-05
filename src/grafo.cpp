@@ -123,7 +123,6 @@ vector <int> Grafo::GrauConectividade(int vertice){
     vector<int> vizinhos = ids[vertice]; 
     for(int i:vizinhos){
         for(int j : ids[i]){
-            cout << j <<"[" <<pesos[j] << "]"; 
             pesos[j]++; 
         }
     }
