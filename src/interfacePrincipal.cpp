@@ -34,7 +34,7 @@ void InterfacePrincipal::menuLogin() {
         cout << "(1) Criar conta" << endl;
         cout << "(2) Fazer login" << endl;
         cout << "(3) Opções avançadas" << endl;
-        cout << "(0) Sair" << endl;
+        cout << "(0) Voltar" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuCriarConta();
@@ -79,6 +79,7 @@ void InterfacePrincipal::menuAdmin() {
 void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
     cout << "(1) Por nome de usuário" << endl;
     cout << "(2) Por ID" << endl;
+    cout << "(0) Voltar" << endl;
     int opcao = getInput<int>("");
     if(opcao == 1) {
         string usuario1 = getInput<string>("Usuário 1: ");
@@ -204,7 +205,6 @@ void InterfacePrincipal::menuPrincipal() {
         cout << "(1) Amigos" << endl;
         cout << "(2) Grupos de estudo" << endl;
         cout << "(3) Gerenciar perfil" << endl;
-        cout << "(4) Visualizar grafo" << endl;
         cout << "(0) Sair da conta" << endl;
         int opcao = getInput<int>("");
         switch(opcao) {
@@ -216,9 +216,6 @@ void InterfacePrincipal::menuPrincipal() {
                 break;
             case 3:
                 menuConfiguracao();  
-                break;
-            case 4:
-                ids.imprimeGrafo();
                 break;
             case 0:
                 return; 
