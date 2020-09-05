@@ -26,6 +26,7 @@ public:
     bool verificaCredenciais(string usuario, string senha);
     bool validacaoCadastro(Aluno aluno);  
     bool validacaoAmizade(int id1, int id2);
+    bool validacaoUsuario(string usuario); 
     void adicionarAmigo();
     void mostrarAmigos(); 
     void removerAmigo();

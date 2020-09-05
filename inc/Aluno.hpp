@@ -13,6 +13,7 @@ private:
     string nome;
     string usuario;
     string senha;
+    bool ativo; 
 
 public:
     Aluno(int id, int matricula, string nome, string usuario,string senha); 
@@ -28,6 +29,8 @@ public:
     void imprimeDados(); 
     bool verificaUsuario(string usuario);
     bool verificaSenha(string senha);
+    bool isAtivo();
+    void setIsAtivo(bool ativo); 
 };
 
 #endif 

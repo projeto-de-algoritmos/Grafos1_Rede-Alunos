@@ -79,18 +79,22 @@ void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
     if(opcao == 1) {
         string usuario1 = getInput<string>("Usuário 1: ");
         string usuario2 = getInput<string>("Usuário 2: ");
-        vector <int> idUsuarios = procuraIds(usuario1, usuario2);
-        if(adicionar)
-            ids.conectar(idUsuarios[0], idUsuarios[1]);
-        else
-            ids.desconectar(idUsuarios[0], idUsuarios[1]);
+        if(validacaoUsuario(usuario1) && validacaoUsuario(usuario2)){
+            vector <int> idUsuarios = procuraIds(usuario1, usuario2);
+            if(adicionar)
+                ids.conectar(idUsuarios[0], idUsuarios[1]);
+            else
+                ids.desconectar(idUsuarios[0], idUsuarios[1]);
+        }
     } else if(opcao == 2) {
         int id1 = getInput<int>("ID 1: ");
         int id2 = getInput<int>("ID 2: ");
-        if(adicionar)
-            ids.conectar(id1, id2);
-        else
-            ids.desconectar(id1, id2);
+        if(validacaoAmizade(id1,id2)){
+            if(adicionar)
+                ids.conectar(id1, id2);
+            else
+                ids.desconectar(id1, id2);
+        }
     }
 }
 
@@ -147,8 +151,8 @@ void InterfacePrincipal::menuCriarConta() {
 }
 
 bool InterfacePrincipal::validacaoCadastro(Aluno aluno){
-    for(Aluno i: alunos){
-        if(i.getMatricula() == aluno.getMatricula())
+    for(Aluno a: alunos){
+        if(a.getMatricula() == aluno.getMatricula() || a.getUsuario() == aluno.getUsuario())
             return false; 
     } 
     return true;     
@@ -212,27 +216,29 @@ void InterfacePrincipal::menuPrincipal() {
 }
 
 void InterfacePrincipal::menuAmigos() {
-    cout << "(1) Meus amigos" << endl;
-    cout << "(2) Adicionar amigo" << endl;
-    cout << "(3) Remover amigo" << endl;
-    cout << "(4) Amigos sugeridos" << endl;
-    cout << "(0) Voltar" << endl;
-    int opcao = getInput<int>("");
-    if(opcao == 1)
-        mostrarAmigos(); 
-    else if(opcao == 2)
-        adicionarAmigo();
-    else if(opcao == 3)
-        removerAmigo();
-    else if(opcao == 4)
-        sugerirAmigos();
+    while(true){
+        cout << "(1) Meus amigos" << endl;
+        cout << "(2) Adicionar amigo" << endl;
+        cout << "(3) Remover amigo" << endl;
+        cout << "(4) Amigos sugeridos" << endl;
+        cout << "(0) Voltar" << endl;
+        int opcao = getInput<int>("");
+        if(opcao == 1)
+            mostrarAmigos(); 
+        else if(opcao == 2)
+            adicionarAmigo();
+        else if(opcao == 3)
+            removerAmigo();
+        else if(opcao == 4)
+            sugerirAmigos();
+    }
 }
 
 void InterfacePrincipal::sugerirAmigos() {
     vector <int> amigosRecomendados = ids.bfs(alunoAtual); 
     vector <int> pesos = ids.GrauConectividade(alunoAtual);
     for(int i : amigosRecomendados){
-        cout << alunos[i].getUsuario() << "  "<< pesos[i] <<"Amigos em Comum" << endl;
+        cout << alunos[i].getUsuario() << "  "<< pesos[i] <<" amigos em comum" << endl;
     }
 }
 
@@ -334,4 +340,4 @@ void InterfacePrincipal::menuAtualizacao(){
 
 void InterfacePrincipal::mostrarPerfil(){
     alunos[alunoAtual].imprimeDados(); 
-}
+}   
