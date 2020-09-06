@@ -303,10 +303,23 @@ bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
 } 
 
 void InterfacePrincipal::menuGrupos() {
-    cout << "(1) Meus grupos" << endl;
-    cout << "(2) Criar grupo" << endl; 
-    cout << "(0) Voltar" << endl; 
-    int opcao = getInput<int>(""); 
+    while(true){
+        cout << "(1) Meus grupos" << endl;
+        cout << "(2) Criar grupo" << endl; 
+        cout << "(0) Voltar" << endl; 
+        int opcao = getInput<int>(""); 
+        if(opcao == 1)
+            mostrarGrupos(); 
+        else if(opcao == 2)
+            menuCriarGrupo(); 
+        else
+            break; 
+    }
+
+}
+
+void InterfacePrincipal::mostrarGrupos(){
+    
 }
 
 void InterfacePrincipal::menuConfiguracao() {

@@ -10,16 +10,17 @@ class Grupo{
         int id; 
         string nome;
         string descricao;
-        vector <Aluno> membros; 
+        vector <int> membros; 
     
     public: 
-        Grupo(string nome, string descricao);
-        int getId(); 
-        void setId(int id);
+        Grupo(int id, string nome, string descricao);
+        int getId();
         string getNome();
         void setNome(string nome);
         string getDescricao();
-        void setDescricao(string descricao);  
+        void setDescricao(string descricao); 
+        vector <int> getMembros(); 
+
 };
 
 #endif
