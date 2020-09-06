@@ -2,6 +2,7 @@
 #define INTERFACEPRINCIPAL_HPP
 
 #include "grafo.hpp"
+#include "grupo.hpp"
 
 #include <iostream>
 
@@ -11,6 +12,7 @@ class InterfacePrincipal {
 private:
     Grafo ids;
     vector <Aluno> alunos;
+    vector <Grupo> grupos; 
     int alunoAtual;
 public:
     InterfacePrincipal();

@@ -51,15 +51,12 @@ void InterfacePrincipal::menuAvancado() {
     while(true) {
         cout << "(1) Modo administrador" << endl;
         cout << "(2) Estatísticas" << endl;
-        cout << "(3) Visualizar grafo" << endl;
         cout << "(0) Voltar" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuAdmin();
         else if(opcao == 2)
             menuEstatisticas();
-        else if(opcao == 3)
-            ids.imprimeGrafo();
         else
             break;
     }
@@ -69,7 +66,6 @@ void InterfacePrincipal::menuAdmin() {
     while(true) {
         cout << "(1) Conectar usuários" << endl;
         cout << "(2) Desconectar Usuários" << endl;
-        cout << "(0) Voltar" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuAmigosAdmin(true);
@@ -182,8 +178,8 @@ void InterfacePrincipal::menuFazerLogin() {
         loop = verificaCredenciais(usuario, senha);
         if(loop == true){
             cout << "Credenciais incorretas." << endl;
-            cout << "(1) Tentar novamente" << endl;
-            cout << "(2) Cadastre-se" << endl;
+            cout << "(1)Tentar novamente" << endl;
+            cout << "(2)Cadastre-se" << endl;
             int opcao = getInput<int>(""); 
             if(opcao == 2){
                 menuCriarConta();
@@ -325,6 +321,14 @@ void InterfacePrincipal::menuGrupos() {
 void InterfacePrincipal::mostrarGrupos(){
     
 }
+
+void InterfacePrincipal::menuCriarGrupo(){
+    string nome = getInput <string> ("Nome do Grupo");   
+    string descricao = getInput <string> ("Descricao do Grupo");
+    grupos.push_back(Grupo(grupos.size(), nome, descricao));  
+}
+
+
 
 void InterfacePrincipal::menuConfiguracao() {
     cout << "(1) Atualizar dados" << endl;
