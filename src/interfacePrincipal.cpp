@@ -316,7 +316,8 @@ void InterfacePrincipal::menuGrupos() {
     while(true){
         cout << "(1) Meus grupos" << endl;
         cout << "(2) Criar grupo" << endl;
-        cout << "(3) Entrar em um grupo" << endl;  
+        cout << "(3) Entrar em um grupo" << endl; 
+        cout << "(4) Convites" << endl;  
         cout << "(0) Voltar" << endl; 
         int opcao = getInput<int>(""); 
         if(opcao == 1)
@@ -325,6 +326,9 @@ void InterfacePrincipal::menuGrupos() {
             menuCriarGrupo(); 
         else if(opcao == 3){
             entrarGrupo(); 
+        }
+        else if(opcao == 4){
+
         }
         else
             break; 
@@ -355,7 +359,32 @@ void InterfacePrincipal::mostrarGrupos(){
 }
 
 void InterfacePrincipal::mostrarDadosGrupo(int idGrupo){
-    grupos[idGrupo].mostrarDados(); 
+    while(true) {
+        grupos[idGrupo].mostrarDados(); 
+        cout << "-----------------------------" << endl; 
+        cout << "(1) Convidar alguem    "; 
+        cout << "(2) Ver membros    "; 
+        cout << "(3) Sair do Grupo  ";
+        cout << "(0) Voltar     "; 
+        int opcao = getInput <int>("");
+        if(opcao == 1){
+
+        }
+        else if(opcao == 2){
+            mostrarMembrosGrupo(idGrupo); 
+        }
+        else if(opcao == 3){
+
+        }
+        else
+            return; 
+    }
+}
+
+void InterfacePrincipal::mostrarMembrosGrupo(int idGrupo){
+    vector <int> membrosGrupo = grupos[idGrupo].getMembros(); 
+    for(int m: membrosGrupo)
+       cout << alunos[m].getUsuario() << endl;
 }
 
 void InterfacePrincipal::menuCriarGrupo(){
