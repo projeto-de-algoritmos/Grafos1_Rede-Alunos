@@ -21,6 +21,7 @@ class Grupo{
         void setDescricao(string descricao); 
         vector <int> getMembros(); 
         void addMembro(int idAluno); 
+        void removeMembro(int idAluno); 
         void mostrarDados(); 
         
 

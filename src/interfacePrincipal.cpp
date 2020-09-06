@@ -338,11 +338,14 @@ void InterfacePrincipal::menuGrupos() {
 
 
 void InterfacePrincipal::mostrarGrupos(){
-    vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
-    int tamanho =  idsGrupos.size(); 
+    
     while(true) {
-        if(tamanho == 0)
+        vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
+        int tamanho =  idsGrupos.size(); 
+        if(tamanho == 0){
+            cout << "Sem grupos" << endl;
             return;
+        }
         int j = 1; 
         cout << "(0) Voltar" << endl;
         for(int i:idsGrupos){
@@ -365,7 +368,7 @@ void InterfacePrincipal::mostrarDadosGrupo(int idGrupo){
         cout << "(1) Convidar alguem    "; 
         cout << "(2) Ver membros    "; 
         cout << "(3) Sair do Grupo  ";
-        cout << "(0) Voltar     "; 
+        cout << "(0) Voltar" << endl; 
         int opcao = getInput <int>("");
         if(opcao == 1){
 
@@ -374,7 +377,8 @@ void InterfacePrincipal::mostrarDadosGrupo(int idGrupo){
             mostrarMembrosGrupo(idGrupo); 
         }
         else if(opcao == 3){
-
+            sairGrupo(idGrupo); 
+            return;
         }
         else
             return; 
@@ -385,6 +389,12 @@ void InterfacePrincipal::mostrarMembrosGrupo(int idGrupo){
     vector <int> membrosGrupo = grupos[idGrupo].getMembros(); 
     for(int m: membrosGrupo)
        cout << alunos[m].getUsuario() << endl;
+    cout << "-----------------------------" << endl; 
+}
+
+void InterfacePrincipal::sairGrupo(int idGrupo){
+    alunos[alunoAtual].removeGrupo(idGrupo);
+    grupos[idGrupo].removeMembro(alunoAtual); 
 }
 
 void InterfacePrincipal::menuCriarGrupo(){

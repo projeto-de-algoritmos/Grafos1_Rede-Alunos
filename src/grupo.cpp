@@ -34,6 +34,16 @@ void Grupo::addMembro(int idAluno){
     membros.push_back(idAluno); 
 }
 
+void Grupo::removeMembro(int idAluno){
+    int tamanho = membros.size(); 
+    for(int i = 0; i < tamanho; i++){
+        if(membros[i] == idAluno){
+                membros.erase(membros.begin() + i); 
+                break; 
+        }
+    }
+}
+
 void Grupo::mostrarDados(){
     cout << "Nome do Grupo: " <<  nome << endl; 
     cout << "Descricao: " << descricao << endl;
