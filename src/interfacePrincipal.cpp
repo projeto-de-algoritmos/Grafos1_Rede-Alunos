@@ -60,12 +60,15 @@ void InterfacePrincipal::menuAvancado() {
     while(true) {
         cout << "(1) Modo administrador" << endl;
         cout << "(2) Estatísticas" << endl;
+        cout << "(3) Visualizar grafo" << endl;
         cout << "(0) Voltar" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuAdmin();
         else if(opcao == 2)
             menuEstatisticas();
+        else if(opcao == 3)
+            ids.imprimeGrafo();
         else
             break;
     }
