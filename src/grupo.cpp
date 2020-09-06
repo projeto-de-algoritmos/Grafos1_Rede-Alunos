@@ -31,6 +31,10 @@ vector<int>Grupo::getMembros(){
 } 
 
 void Grupo::addMembro(int idAluno){
+    for(int i: membros) {
+        if(idAluno == i)
+            return;
+    }
     membros.push_back(idAluno); 
 }
 

@@ -87,6 +87,14 @@ vector <vector <int>> Grafo::getCiclos() {
     return ciclos;
 }
 
+vector <vector <int>> Grafo::getCiclos(int vertice) {
+    vector <vector <int>> ciclos;
+    vector <bool> visitados(tamanho, false), finalizados(tamanho, false), buscados(tamanho, false);
+    vector <int> predecessor(tamanho, -1);
+    dfsCiclo(vertice, visitados, finalizados, predecessor, buscados, ciclos);
+    return ciclos;
+}
+
 vector <int> Grafo::bfs(int vertice) {
     vector <bool> visitados(tamanho, false);
     vector <int> fila; 

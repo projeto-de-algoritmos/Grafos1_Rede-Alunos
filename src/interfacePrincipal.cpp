@@ -317,7 +317,8 @@ void InterfacePrincipal::menuGrupos() {
         cout << "(1) Meus grupos" << endl;
         cout << "(2) Criar grupo" << endl;
         cout << "(3) Entrar em um grupo" << endl; 
-        cout << "(4) Convites" << endl;  
+        cout << "(4) Sugestão de grupos" << endl;
+        cout << "(5) Convites" << endl;  
         cout << "(0) Voltar" << endl; 
         int opcao = getInput<int>(""); 
         if(opcao == 1)
@@ -328,7 +329,7 @@ void InterfacePrincipal::menuGrupos() {
             entrarGrupo(); 
         }
         else if(opcao == 4){
-
+            sugestaoGrupos();
         }
         else
             break; 
@@ -336,6 +337,41 @@ void InterfacePrincipal::menuGrupos() {
 
 }
 
+void InterfacePrincipal::sugestaoGrupos() {
+    vector <vector <int>> ciclos = ids.getCiclos(alunoAtual);
+    int qtd = ciclos.size();
+    for(int i = 0; i < qtd; i++) {
+        bool achei = false;
+        for(int j: ciclos[i]) {
+            if(j == alunoAtual) {
+                achei = true;
+                break;
+            }
+        }
+        if(!achei)
+            ciclos.erase(ciclos.begin() + i);
+    }
+    qtd = ciclos.size();
+    if(qtd == 0) {
+        cout << "Não há sugestões" << endl;
+        return;
+    }
+    for(int i = 0; i < qtd; i++) {
+        cout << "(" << i + 1 << ") ";
+        for(int j: ciclos[i])
+            cout << j << "   ";
+        cout << endl;
+    }
+    cout << "(0) Voltar" << endl;
+    int opcao = getInput<int>("");
+    if(opcao == 0)
+        return;
+    menuCriarGrupo();
+    for(int i: ciclos[opcao - 1]) {
+        alunos[i].addGrupo(grupos.size() - 1);
+        grupos[grupos.size() - 1].addMembro(i);
+    }
+}
 
 void InterfacePrincipal::mostrarGrupos(){
     vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
@@ -390,7 +426,7 @@ void InterfacePrincipal::mostrarMembrosGrupo(int idGrupo){
 void InterfacePrincipal::menuCriarGrupo(){
     string nome; 
     do {
-    nome = lerString("Nome do Grupo: ");
+        nome = lerString("Nome do Grupo: ");
     } while(!validacaoGrupo(nome)); 
     string descricao = lerString("Descricao do Grupo: ");
     int id = grupos.size(); 

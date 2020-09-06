@@ -74,6 +74,10 @@ vector<int> Aluno::getGrupos(){
 } 
 
 void Aluno::addGrupo(int idGrupo){
+    for(int i: grupos) {
+        if(i == idGrupo)
+            return;
+    }
     grupos.push_back(idGrupo); 
 } 
 

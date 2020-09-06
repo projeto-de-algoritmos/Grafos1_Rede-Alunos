@@ -26,6 +26,7 @@ public:
     vector <int> bfs(int vertice);
     vector <int> GrauConectividade( int vertice); 
     int getQtdDesconectados();
+    vector <vector <int>> getCiclos(int vertice);
 };
 
 #endif

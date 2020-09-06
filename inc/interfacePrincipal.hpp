@@ -44,6 +44,7 @@ public:
     void menuEstatisticas();
     void menuAmigosAdmin(bool adicionar);
     vector <int> procuraIds(string usuario1, string usuario2);
+    void sugestaoGrupos();
 };
 
 #endif
