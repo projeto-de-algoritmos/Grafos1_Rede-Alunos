@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 
 using namespace std;
 
@@ -26,6 +27,14 @@ T getInput(string mensagem) {
         cin.ignore(32767, '\n');
     }
     return entrada;
+}
+
+string lerString(string mensagem){
+    string texto;
+    cout << mensagem; 
+     getline(cin,texto);
+      
+    return texto; 
 }
 
 
@@ -66,6 +75,7 @@ void InterfacePrincipal::menuAdmin() {
     while(true) {
         cout << "(1) Conectar usuários" << endl;
         cout << "(2) Desconectar Usuários" << endl;
+        cout << "(0) Voltar" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuAmigosAdmin(true);
@@ -136,7 +146,7 @@ void InterfacePrincipal::menuCriarConta() {
     while(true){  
         cout << "Criação de Conta" << endl << endl; 
         int matricula = getInput<int>("Matrícula: ");
-        string nome = getInput<string>("Nome completo: ");
+        string nome = lerString("Nome completo: ");
         string usuario = getInput<string>("Nome de usuário: ");
         string senha = getInput<string>("Senha: ");
         Aluno aluno = Aluno(ids.getTamanho(), matricula, nome, usuario, senha);
@@ -275,7 +285,7 @@ void InterfacePrincipal::mostrarAmigos() {
 
 void InterfacePrincipal::adicionarAmigo() {
     int id = -1;
-    string usuarioAluno = getInput<string>("Usuário do aluno: ");
+    string usuarioAluno = getInput<string>("Usuario do aluno: ");
     for(Aluno i: alunos){
         if(i.getUsuario() == usuarioAluno){
             id = i.getId();
@@ -338,9 +348,9 @@ void InterfacePrincipal::mostrarGrupos(){
 void InterfacePrincipal::menuCriarGrupo(){
     string nome; 
     do {
-    nome = getInput <string> ("Nome do Grupo: ");
+    nome = lerString("Nome do Grupo: ");
     } while(!validacaoGrupo(nome)); 
-    string descricao = getInput <string> ("Descricao do Grupo: ");
+    string descricao = lerString("Descricao do Grupo: ");
     int id = grupos.size(); 
     grupos.push_back(Grupo(id, nome, descricao));  
     alunos[alunoAtual].addGrupo(id);
@@ -358,7 +368,7 @@ bool InterfacePrincipal::validacaoGrupo(string nome){
 }
 
 void InterfacePrincipal::entrarGrupo(){
-    string nomeGrupo = getInput<string>("Nome do Grupo: "); 
+    string nomeGrupo = lerString("Nome do Grupo: "); 
     for(Grupo g: grupos){
         if(g.getNome()==nomeGrupo){
             for(int id:alunos[alunoAtual].getGrupos()){

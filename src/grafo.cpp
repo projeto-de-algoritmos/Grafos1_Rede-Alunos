@@ -2,7 +2,6 @@
 
 #include <algorithm>
 
-
 Grafo::Grafo() {
     tamanho = 0;
 }

@@ -38,6 +38,5 @@ void Grupo::mostrarDados(){
     cout << "Nome do Grupo: " <<  nome << endl; 
     cout << "Descricao: " << descricao << endl;
     cout << "Membros: ";
-    
 }
         
