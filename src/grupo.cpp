@@ -30,9 +30,14 @@ vector<int>Grupo::getMembros(){
     return membros; 
 } 
 
+void Grupo::addMembro(int idAluno){
+    membros.push_back(idAluno); 
+}
+
 void Grupo::mostrarDados(){
-    cout << nome << endl << endl; 
+    cout << "Nome do Grupo: " <<  nome << endl; 
     cout << "Descricao: " << descricao << endl;
-    cout << "-----------------------" << endl;   
+    cout << "Membros: ";
+    
 }
         

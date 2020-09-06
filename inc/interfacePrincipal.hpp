@@ -31,6 +31,7 @@ public:
     bool validacaoUsuario(string usuario); 
     bool validacaoGrupo(string nome); 
     void adicionarAmigo();
+    void entrarGrupo(); 
     void mostrarAmigos(); 
     void removerAmigo();
     void sugerirAmigos();

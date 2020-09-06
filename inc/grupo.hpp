@@ -20,7 +20,9 @@ class Grupo{
         string getDescricao();
         void setDescricao(string descricao); 
         vector <int> getMembros(); 
+        void addMembro(int idAluno); 
         void mostrarDados(); 
+        
 
 };
 

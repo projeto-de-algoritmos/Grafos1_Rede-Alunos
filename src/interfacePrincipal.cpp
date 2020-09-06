@@ -17,7 +17,7 @@ T getInput(string mensagem) {
     while(loop) {
         cout << mensagem;
         loop = false;
-        cin >> entrada;
+        cin >> entrada; 
         if(cin.fail()) {
             cin.clear();
             cout << "Entrada inválida." << endl;
@@ -314,7 +314,7 @@ void InterfacePrincipal::menuGrupos() {
         else if(opcao == 2)
             menuCriarGrupo(); 
         else if(opcao == 3){
-
+            entrarGrupo(); 
         }
         else
             break; 
@@ -322,10 +322,17 @@ void InterfacePrincipal::menuGrupos() {
 
 }
 
+
 void InterfacePrincipal::mostrarGrupos(){
     vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
-    for(int i:idsGrupos)
-        grupos[i].mostrarDados();         
+    for(int i:idsGrupos){
+        grupos[i].mostrarDados();
+        vector <int> idsMembros = grupos[i].getMembros(); 
+        for(int j: idsMembros)
+            cout << alunos[j].getUsuario() << " "; 
+        cout << endl << "-----------------------" << endl;
+    }
+   
 }
 
 void InterfacePrincipal::menuCriarGrupo(){
@@ -337,14 +344,33 @@ void InterfacePrincipal::menuCriarGrupo(){
     int id = grupos.size(); 
     grupos.push_back(Grupo(id, nome, descricao));  
     alunos[alunoAtual].addGrupo(id);
+    grupos[id].addMembro(alunoAtual); 
 }
 
 bool InterfacePrincipal::validacaoGrupo(string nome){
     for(Grupo g: grupos){
-        if(g.getNome() == nome)
+        if(g.getNome() == nome){
+            cout << "Nome indisponivel!" << endl; 
             return false; 
+        }
     }
         return true; 
+}
+
+void InterfacePrincipal::entrarGrupo(){
+    string nomeGrupo = getInput<string>("Nome do Grupo: "); 
+    for(Grupo g: grupos){
+        if(g.getNome()==nomeGrupo){
+            for(int id:alunos[alunoAtual].getGrupos()){
+                if(id == g.getId())
+                    return; 
+            }
+            alunos[alunoAtual].addGrupo(g.getId()); 
+            grupos[g.getId()].addMembro(alunoAtual); 
+            return; 
+        }
+    }
+    cout << "Grupo Inexistente" << endl; 
 }
 
 void InterfacePrincipal::menuConfiguracao() {
