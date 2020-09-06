@@ -30,7 +30,8 @@ public:
     bool verificaUsuario(string usuario);
     bool verificaSenha(string senha);
     vector <int> getGrupos(); 
-    void addGrupo(int idGrupo); 
+    void addGrupo(int idGrupo);
+    void removeGrupo(int idGrupo);
 };
 
 #endif 

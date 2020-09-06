@@ -81,3 +81,13 @@ void Aluno::addGrupo(int idGrupo){
     grupos.push_back(idGrupo); 
 } 
 
+void Aluno::removeGrupo(int idGrupo){
+    int tamanho = grupos.size(); 
+    for(int i = 0; i < tamanho ; i++){
+        if(grupos[i] == idGrupo){
+            grupos.erase(grupos.begin() + i); 
+            break;
+        } 
+    }
+}
+
