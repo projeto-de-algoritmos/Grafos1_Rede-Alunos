@@ -335,14 +335,27 @@ void InterfacePrincipal::menuGrupos() {
 
 void InterfacePrincipal::mostrarGrupos(){
     vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
-    for(int i:idsGrupos){
-        grupos[i].mostrarDados();
-        vector <int> idsMembros = grupos[i].getMembros(); 
-        for(int j: idsMembros)
-            cout << alunos[j].getUsuario() << " "; 
-        cout << endl << "-----------------------" << endl;
+    int tamanho =  idsGrupos.size(); 
+    while(true) {
+        if(tamanho == 0)
+            return;
+        int j = 1; 
+        cout << "(0) Voltar" << endl;
+        for(int i:idsGrupos){
+            cout << "(" << j << ") " << grupos[i].getNome() << endl;
+            j++; 
+        }
+        int opcao = getInput<int>("");
+        if(opcao == 0 || opcao > tamanho)
+            break; 
+        else
+            mostrarDadosGrupo(idsGrupos[opcao-1]); 
+         
     }
-   
+}
+
+void InterfacePrincipal::mostrarDadosGrupo(int idGrupo){
+    grupos[idGrupo].mostrarDados(); 
 }
 
 void InterfacePrincipal::menuCriarGrupo(){

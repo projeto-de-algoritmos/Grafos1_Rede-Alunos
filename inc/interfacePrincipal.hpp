@@ -35,7 +35,8 @@ public:
     void mostrarAmigos(); 
     void removerAmigo();
     void sugerirAmigos();
-    void mostrarGrupos(); 
+    void mostrarGrupos();
+    void mostrarDadosGrupo(int idGrupo);  
     void menuCriarGrupo(); 
     void menuAvancado();
     void menuAdmin();
