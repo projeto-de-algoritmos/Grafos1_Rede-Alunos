@@ -10,8 +10,7 @@ Aluno::Aluno(int id, int matricula, string nome, string usuario, string senha) {
     this->nome = nome;
     this->usuario = usuario;
     this->senha = senha;
-    this->ativo = true; 
-}
+    }
 
 int Aluno::getMatricula() {
     return matricula;
@@ -69,4 +68,12 @@ bool Aluno::verificaUsuario(string usuario) {
     else
         return false;
 }
+
+vector<int> Aluno::getGrupos(){
+    return grupos; 
+} 
+
+void Aluno::addGrupo(int idGrupo){
+    grupos.push_back(idGrupo); 
+} 
 

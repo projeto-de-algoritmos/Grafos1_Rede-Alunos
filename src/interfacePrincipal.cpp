@@ -305,13 +305,17 @@ bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
 void InterfacePrincipal::menuGrupos() {
     while(true){
         cout << "(1) Meus grupos" << endl;
-        cout << "(2) Criar grupo" << endl; 
+        cout << "(2) Criar grupo" << endl;
+        cout << "(3) Entrar em um grupo" << endl;  
         cout << "(0) Voltar" << endl; 
         int opcao = getInput<int>(""); 
         if(opcao == 1)
             mostrarGrupos(); 
         else if(opcao == 2)
             menuCriarGrupo(); 
+        else if(opcao == 3){
+
+        }
         else
             break; 
     }
@@ -319,16 +323,29 @@ void InterfacePrincipal::menuGrupos() {
 }
 
 void InterfacePrincipal::mostrarGrupos(){
-    
+    vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
+    for(int i:idsGrupos)
+        grupos[i].mostrarDados();         
 }
 
 void InterfacePrincipal::menuCriarGrupo(){
-    string nome = getInput <string> ("Nome do Grupo");   
-    string descricao = getInput <string> ("Descricao do Grupo");
-    grupos.push_back(Grupo(grupos.size(), nome, descricao));  
+    string nome; 
+    do {
+    nome = getInput <string> ("Nome do Grupo: ");
+    } while(!validacaoGrupo(nome)); 
+    string descricao = getInput <string> ("Descricao do Grupo: ");
+    int id = grupos.size(); 
+    grupos.push_back(Grupo(id, nome, descricao));  
+    alunos[alunoAtual].addGrupo(id);
 }
 
-
+bool InterfacePrincipal::validacaoGrupo(string nome){
+    for(Grupo g: grupos){
+        if(g.getNome() == nome)
+            return false; 
+    }
+        return true; 
+}
 
 void InterfacePrincipal::menuConfiguracao() {
     cout << "(1) Atualizar dados" << endl;

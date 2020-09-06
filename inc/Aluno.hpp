@@ -13,7 +13,7 @@ private:
     string nome;
     string usuario;
     string senha;
-    bool ativo; 
+    vector <int> grupos;  
 
 public:
     Aluno(int id, int matricula, string nome, string usuario,string senha); 
@@ -29,8 +29,8 @@ public:
     void imprimeDados(); 
     bool verificaUsuario(string usuario);
     bool verificaSenha(string senha);
-    bool isAtivo();
-    void setIsAtivo(bool ativo); 
+    vector <int> getGrupos(); 
+    void addGrupo(int idGrupo); 
 };
 
 #endif 

@@ -29,4 +29,10 @@ void Grupo::setDescricao(string descricao){
 vector<int>Grupo::getMembros(){
     return membros; 
 } 
+
+void Grupo::mostrarDados(){
+    cout << nome << endl << endl; 
+    cout << "Descricao: " << descricao << endl;
+    cout << "-----------------------" << endl;   
+}
         

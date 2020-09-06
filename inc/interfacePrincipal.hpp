@@ -29,6 +29,7 @@ public:
     bool validacaoCadastro(Aluno aluno);  
     bool validacaoAmizade(int id1, int id2);
     bool validacaoUsuario(string usuario); 
+    bool validacaoGrupo(string nome); 
     void adicionarAmigo();
     void mostrarAmigos(); 
     void removerAmigo();
