@@ -43,7 +43,7 @@ void InterfacePrincipal::menuLogin() {
         cout << "(1) Criar conta" << endl;
         cout << "(2) Fazer login" << endl;
         cout << "(3) Opções avançadas" << endl;
-        cout << "(0) Voltar" << endl;
+        cout << "(0) Finalizar o programa" << endl;
         int opcao = getInput<int>("");
         if(opcao == 1)
             menuCriarConta();
@@ -377,16 +377,17 @@ void InterfacePrincipal::sugestaoGrupos() {
             ciclos.erase(ciclos.begin() + i);
     }
     qtd = ciclos.size();
+    cout << endl;
     if(qtd == 0) {
-        cout << endl;
         cout << "Não há sugestões" << endl;
         return;
     }
+    cout << "Escolha uma opção para formar grupo: " << endl;
     cout << "(0) Voltar" << endl;
     for(int i = 0; i < qtd; i++) {
         cout << "(" << i + 1 << ") ";
         for(int j: ciclos[i])
-            cout << j << "   ";
+            cout << alunos[j].getUsuario() << "   ";
         cout << endl;
     }
     int opcao = getInput<int>("");
@@ -403,8 +404,8 @@ void InterfacePrincipal::mostrarGrupos(){
     while(true) {
         vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
         int tamanho =  idsGrupos.size(); 
+        cout << endl;
         if(tamanho == 0){
-            cout << endl;
             cout << "Sem grupos" << endl;
             return;
         }
