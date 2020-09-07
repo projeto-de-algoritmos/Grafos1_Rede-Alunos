@@ -50,8 +50,8 @@ int Aluno::getId() {
 
 void Aluno::imprimeDados() {
     cout << "Nome: " << getNome() << endl;
-    cout << "Usuario: " << getUsuario() << endl;
-    cout << "Matricula: " << getMatricula() << endl << endl;
+    cout << "Usuário: " << getUsuario() << endl;
+    cout << "Matrícula: " << getMatricula() << endl << endl;
     
 }
 

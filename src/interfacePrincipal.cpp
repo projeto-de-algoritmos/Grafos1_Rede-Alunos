@@ -39,6 +39,7 @@ string lerString(string mensagem){
 
 void InterfacePrincipal::menuLogin() {
     while(true) {
+        cout << endl;
         cout << "(1) Criar conta" << endl;
         cout << "(2) Fazer login" << endl;
         cout << "(3) Opções avançadas" << endl;
@@ -57,6 +58,7 @@ void InterfacePrincipal::menuLogin() {
 
 void InterfacePrincipal::menuAvancado() {
     while(true) {
+        cout << endl;
         cout << "(1) Modo administrador" << endl;
         cout << "(2) Estatísticas" << endl;
         cout << "(3) Visualizar grafo" << endl;
@@ -75,6 +77,7 @@ void InterfacePrincipal::menuAvancado() {
 
 void InterfacePrincipal::menuAdmin() {
     while(true) {
+        cout << endl;
         cout << "(1) Conectar usuários" << endl;
         cout << "(2) Desconectar Usuários" << endl;
         cout << "(0) Voltar" << endl;
@@ -89,11 +92,13 @@ void InterfacePrincipal::menuAdmin() {
 }
 
 void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
+    cout << endl;
     cout << "(1) Por nome de usuário" << endl;
     cout << "(2) Por ID" << endl;
     cout << "(0) Voltar" << endl;
     int opcao = getInput<int>("");
     if(opcao == 1) {
+        cout << endl;
         string usuario1 = getInput<string>("Usuário 1: ");
         string usuario2 = getInput<string>("Usuário 2: ");
         if(validacaoUsuario(usuario1) && validacaoUsuario(usuario2)){
@@ -104,6 +109,7 @@ void InterfacePrincipal::menuAmigosAdmin(bool adicionar) {
                 ids.desconectar(idUsuarios[0], idUsuarios[1]);
         }
     } else if(opcao == 2) {
+        cout << endl;
         int id1 = getInput<int>("ID 1: ");
         int id2 = getInput<int>("ID 2: ");
             if(adicionar && validacaoAmizade(id1,id2))
@@ -136,6 +142,7 @@ vector <int> InterfacePrincipal::procuraIds(string usuario1, string usuario2) {
 }
 
 void InterfacePrincipal::menuEstatisticas() {
+    cout << endl;
     cout << ids.getTamanho() << " usuários estão cadastrados." << endl;
     int qtdDesconectados = ids.getQtdDesconectados();
     cout << ids.getTamanho() - qtdDesconectados << " usuários estão conectados." << endl;
@@ -146,6 +153,7 @@ void InterfacePrincipal::menuEstatisticas() {
 void InterfacePrincipal::menuCriarConta() {
     bool validacao; 
     while(true){  
+        cout << endl;
         cout << "Criação de Conta" << endl << endl; 
         int matricula = getInput<int>("Matrícula: ");
         string nome = lerString("Nome completo: ");
@@ -157,11 +165,13 @@ void InterfacePrincipal::menuCriarConta() {
             alunoAtual = ids.getTamanho();
             alunos.push_back(aluno);
             ids.novoVertice();
+            cout << endl;
             cout << "Conta criada com sucesso!" << endl; 
             menuPrincipal();
             return; 
         }
         else{
+            cout << endl;
             cout << "Conta já cadastrada!" << endl;
             cout << "(1) Fazer Login " << endl;
             cout << "(2) Novo cadastro" << endl;
@@ -185,13 +195,15 @@ bool InterfacePrincipal::validacaoCadastro(Aluno aluno){
 void InterfacePrincipal::menuFazerLogin() {
     bool loop = true;
     while(loop) {
+        cout << endl;
         string usuario = getInput<string>("Nome de usuário: ");
         string senha = getInput<string>("Senha: ");
         loop = verificaCredenciais(usuario, senha);
         if(loop == true){
+            cout << endl;
             cout << "Credenciais incorretas." << endl;
-            cout << "(1)Tentar novamente" << endl;
-            cout << "(2)Cadastre-se" << endl;
+            cout << "(1) Tentar novamente" << endl;
+            cout << "(2) Cadastre-se" << endl;
             int opcao = getInput<int>(""); 
             if(opcao == 2){
                 menuCriarConta();
@@ -214,6 +226,7 @@ bool InterfacePrincipal::verificaCredenciais(string usuario, string senha) {
 
 void InterfacePrincipal::menuPrincipal() {
     while(true) {
+        cout << endl;
         cout << "(1) Amigos" << endl;
         cout << "(2) Grupos de estudo" << endl;
         cout << "(3) Gerenciar perfil" << endl;
@@ -227,7 +240,7 @@ void InterfacePrincipal::menuPrincipal() {
                 menuGrupos();  
                 break;
             case 3:
-                menuConfiguracao();  
+                menuAtualizacao();  
                 break;
             case 0:
                 return; 
@@ -237,6 +250,7 @@ void InterfacePrincipal::menuPrincipal() {
 
 void InterfacePrincipal::menuAmigos() {
     while(true){
+        cout << endl;
         cout << "(1) Meus amigos" << endl;
         cout << "(2) Adicionar amigo" << endl;
         cout << "(3) Remover amigo" << endl;
@@ -259,12 +273,18 @@ void InterfacePrincipal::menuAmigos() {
 void InterfacePrincipal::sugerirAmigos() {
     vector <int> amigosRecomendados = ids.bfs(alunoAtual); 
     vector <int> pesos = ids.GrauConectividade(alunoAtual);
+    cout << endl;
+    if(amigosRecomendados.size() == 0) {
+        cout << "Não há recomendações" << endl;
+        return;
+    }
     for(int i : amigosRecomendados){
         cout << alunos[i].getUsuario() << "  "<< pesos[i] <<" amigos em comum" << endl;
     }
 }
 
 void InterfacePrincipal::removerAmigo() {
+    cout << endl;
     string usuario = getInput<string>("Nome de usuário: ");
     for(int id: ids.getListaAdjacencia(alunoAtual)) {
         if(usuario == alunos[id].getUsuario()) {
@@ -275,6 +295,7 @@ void InterfacePrincipal::removerAmigo() {
 }
 
 void InterfacePrincipal::mostrarAmigos() {
+    cout << endl;
     cout << "Numero de amigos: " << ids.getListaAdjacencia(alunoAtual).size()<< endl;
     vector <string> nomesAmigos;
     for (int i: ids.getListaAdjacencia(alunoAtual)){
@@ -287,6 +308,7 @@ void InterfacePrincipal::mostrarAmigos() {
 
 void InterfacePrincipal::adicionarAmigo() {
     int id = -1;
+    cout << endl;
     string usuarioAluno = getInput<string>("Usuario do aluno: ");
     for(Aluno i: alunos){
         if(i.getUsuario() == usuarioAluno){
@@ -299,6 +321,7 @@ void InterfacePrincipal::adicionarAmigo() {
 }
 
 bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
+    cout << endl;
     if(id2 == -1 || id1 > ids.getTamanho() || id2 > ids.getTamanho()){
         cout << "Falhou!" << endl; 
         return false; 
@@ -316,6 +339,7 @@ bool InterfacePrincipal::validacaoAmizade(int id1, int id2){
 
 void InterfacePrincipal::menuGrupos() {
     while(true){
+        cout << endl;
         cout << "(1) Meus grupos" << endl;
         cout << "(2) Criar grupo" << endl;
         cout << "(3) Entrar em um grupo" << endl; 
@@ -354,16 +378,17 @@ void InterfacePrincipal::sugestaoGrupos() {
     }
     qtd = ciclos.size();
     if(qtd == 0) {
+        cout << endl;
         cout << "Não há sugestões" << endl;
         return;
     }
+    cout << "(0) Voltar" << endl;
     for(int i = 0; i < qtd; i++) {
         cout << "(" << i + 1 << ") ";
         for(int j: ciclos[i])
             cout << j << "   ";
         cout << endl;
     }
-    cout << "(0) Voltar" << endl;
     int opcao = getInput<int>("");
     if(opcao == 0)
         return;
@@ -375,11 +400,11 @@ void InterfacePrincipal::sugestaoGrupos() {
 }
 
 void InterfacePrincipal::mostrarGrupos(){
-    
     while(true) {
         vector <int> idsGrupos = alunos[alunoAtual].getGrupos();
         int tamanho =  idsGrupos.size(); 
         if(tamanho == 0){
+            cout << endl;
             cout << "Sem grupos" << endl;
             return;
         }
@@ -394,13 +419,13 @@ void InterfacePrincipal::mostrarGrupos(){
             break; 
         else
             mostrarDadosGrupo(idsGrupos[opcao-1]); 
-         
     }
 }
 
 void InterfacePrincipal::mostrarDadosGrupo(int idGrupo){
     while(true) {
         grupos[idGrupo].mostrarDados(); 
+        cout << endl;
         cout << "-----------------------------" << endl; 
         cout << "(1) Ver membros    "; 
         cout << "(2) Sair do Grupo  ";
@@ -433,6 +458,7 @@ void InterfacePrincipal::sairGrupo(int idGrupo){
 void InterfacePrincipal::menuCriarGrupo(){
     string nome; 
     do {
+        cout << endl;
         nome = lerString("Nome do Grupo: ");
     } while(!validacaoGrupo(nome)); 
     string descricao = lerString("Descricao do Grupo: ");
@@ -445,6 +471,7 @@ void InterfacePrincipal::menuCriarGrupo(){
 bool InterfacePrincipal::validacaoGrupo(string nome){
     for(Grupo g: grupos){
         if(g.getNome() == nome){
+            cout << endl;
             cout << "Nome indisponivel!" << endl; 
             return false; 
         }
@@ -453,6 +480,7 @@ bool InterfacePrincipal::validacaoGrupo(string nome){
 }
 
 void InterfacePrincipal::entrarGrupo(){
+    cout << endl;
     string nomeGrupo = lerString("Nome do Grupo: "); 
     for(Grupo g: grupos){
         if(g.getNome()==nomeGrupo){
@@ -465,31 +493,16 @@ void InterfacePrincipal::entrarGrupo(){
             return; 
         }
     }
+    cout << endl;
     cout << "Grupo Inexistente" << endl; 
 }
 
-void InterfacePrincipal::menuConfiguracao() {
-    cout << "(1) Atualizar dados" << endl;
-    cout << "(2) Excluir conta" << endl;  
-    cout << "(0) Voltar" << endl; 
-    int opcao = getInput<int>(""); 
-
-    if(opcao == 1){
-        menuAtualizacao(); 
-    }
-    else if(opcao == 2){
-
-    }
-    else{
-
-    }
-}
-
 void InterfacePrincipal::menuAtualizacao(){ 
-    mostrarPerfil(); 
-    cout << "Escolha o dado que deseja atualizar:" << endl << endl;
-    cout << "(1) Nome "  << endl;
-    cout << "(2) Usuario "  << endl;
+    cout << endl;
+    mostrarPerfil();
+    cout << "Escolha o dado que deseja atualizar:" << endl;
+    cout << "(1) Nome"  << endl;
+    cout << "(2) Usuário"  << endl;
     cout << "(3) Senha" << endl; 
     cout << "(4) Matrícula" << endl;
     cout << "(0) Voltar" << endl; 

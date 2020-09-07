@@ -11,6 +11,7 @@ int Grafo::getTamanho() {
 }
 
 void Grafo::imprimeGrafo() {
+    cout << endl;
     for(int i = 0; i < tamanho; i++) {
         cout << i << " -> ";
         for(int j: ids[i])
