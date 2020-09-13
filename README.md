@@ -20,6 +20,13 @@ O projeto é uma rede de alunos. É possível criar uma conta ou fazer login com
 ## Instalação 
 **Linguagem**: C++<br>
 Para executar é preciso ter git, make e g++ instalados.<br>
+
+### Comandos para instalar dependências:
+```
+sudo apt install git
+sudo apt install make
+sudo apt install g++
+```
 ### Instruções para executar:
 ```
 1. git clone https://github.com/projeto-de-algoritmos/Grafos1_Rede-Alunos
